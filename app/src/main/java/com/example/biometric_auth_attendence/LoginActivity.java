@@ -59,15 +59,22 @@ public class LoginActivity extends AppCompatActivity {
                             boolean success = jsonObject.getBoolean("success");
 
                             if(success){ // success to login
+                                // get user info from raspberryPI database
                                 String userID = jsonObject.getString("userID");
                                 String userPassword = jsonObject.getString("userPassword");
+                                String userMajor = jsonObject.getString("userMajor");
+                                String userName = jsonObject.getString("userName");
+                                int studentNumber = jsonObject.getInt("studentNumber");
 
                                 Toast.makeText(getApplicationContext(), "success to login", Toast.LENGTH_SHORT).show();
 
-                                // new intent data parse
+                                // make a new intent and parse user info data
                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                 intent.putExtra("userID", userID);
                                 intent.putExtra("userPassword", userPassword);
+                                intent.putExtra("userMajor", userMajor);
+                                intent.putExtra("userName", userName);
+                                intent.putExtra("studentNumber", studentNumber);
 
                                 startActivity(intent);
                             }

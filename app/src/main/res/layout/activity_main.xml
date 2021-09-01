@@ -16,7 +16,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/main_tv_major"
+            android:id="@+id/tv_main_major"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -30,7 +30,7 @@
             android:layout_weight="1" />
 
         <TextView
-            android:id="@+id/main_tv_stuNum"
+            android:id="@+id/tv_main_stuNum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -39,6 +39,7 @@
             android:textColor="@color/black" />
 
         <TextView
+            android:id="@+id/tv_main_userName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -55,7 +56,7 @@
         android:weightSum="2">
 
         <Button
-            android:id="@+id/main_btn_attendance"
+            android:id="@+id/btn_main_attendance"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -63,7 +64,7 @@
             android:textSize="40dp" />
 
         <Button
-            android:id="@+id/main_btn_check"
+            android:id="@+id/btn_main_check"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -79,7 +80,7 @@
         android:weightSum="2">
 
         <Button
-            android:id="@+id/main_btn_userInfoModify"
+            android:id="@+id/btn_main_userInfoModify"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -87,7 +88,7 @@
             android:textSize="40dp" />
 
         <Button
-            android:id="@+id/main_btn_sugangInfoModify"
+            android:id="@+id/btn_main_sugangInfoModify"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
