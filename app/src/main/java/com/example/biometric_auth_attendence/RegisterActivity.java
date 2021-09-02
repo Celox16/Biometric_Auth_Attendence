@@ -64,10 +64,15 @@ public class RegisterActivity extends AppCompatActivity {
                         }
                     }
                 };
-                // request server
+                // request server (register table)
                 RegisterRequest registerRequest = new RegisterRequest(userID, userPassword, userName, studentNumber, userMajor, responseListener);
                 RequestQueue queue = Volley.newRequestQueue(RegisterActivity.this);
                 queue.add(registerRequest);
+
+                // request server (create table)
+                RegisterCreateTable registerCreateTable = new RegisterCreateTable(userID, responseListener);
+                RequestQueue queue1 = Volley.newRequestQueue(RegisterActivity.this);
+                queue1.add(registerCreateTable);
             }
         });
     }
