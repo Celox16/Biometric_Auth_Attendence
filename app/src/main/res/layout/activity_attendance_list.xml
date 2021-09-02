@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="12"
-    tools:context=".MainActivity">
+    tools:context=".AttendanceList">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,7 +16,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/tv_main_major"
+            android:id="@+id/tv_attendanceList_major"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -30,7 +30,7 @@
             android:layout_weight="1" />
 
         <TextView
-            android:id="@+id/tv_main_stuNum"
+            android:id="@+id/tv_attendanceList_stuNum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -39,7 +39,7 @@
             android:textColor="@color/black" />
 
         <TextView
-            android:id="@+id/tv_main_userName"
+            android:id="@+id/tv_attendanceList_userName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -51,53 +51,64 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="5.5"
-        android:weightSum="2">
+        android:layout_height="0dp"
+        android:weightSum="5"
+        android:layout_weight="1">
 
         <Button
-            android:layout_margin="5dp"
-            android:id="@+id/btn_main_attendance"
+            android:id="@+id/btn_attendanceList_MON"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="출석체크"
-            android:textSize="30dp" />
+            android:layout_margin="3dp"
+            android:text="월"
+            android:textSize="20dp"/>
 
         <Button
-            android:layout_margin="5dp"
-            android:id="@+id/btn_main_check"
+            android:id="@+id/btn_attendanceList_TUE"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_margin="3dp"
             android:layout_weight="1"
-            android:text="출석확인"
-            android:textSize="30dp" />
+            android:text="화"
+            android:textSize="20dp"/>
+
+        <Button
+            android:id="@+id/btn_attendanceList_WED"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:text="수"
+            android:textSize="20dp"/>
+
+        <Button
+            android:id="@+id/btn_attendanceList_THU"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:text="목"
+            android:textSize="20dp"/>
+
+        <Button
+            android:id="@+id/btn_attendanceList_FRI"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:text="금"
+            android:textSize="20dp"/>
+
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="5.5"
-        android:weightSum="2">
+        android:layout_weight="10"
+        android:orientation="vertical">
 
-        <Button
-            android:layout_margin="5dp"
-            android:id="@+id/btn_main_userInfoModify"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="회원정보\n수정"
-            android:textSize="30dp" />
-
-        <Button
-            android:layout_margin="5dp"
-            android:id="@+id/btn_main_sugangInfoModify"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="수강정보\n수정"
-            android:textSize="30dp" />
 
     </LinearLayout>
 
