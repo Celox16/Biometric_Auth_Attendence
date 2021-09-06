@@ -72,7 +72,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // make a new intent and parse user info data
-
+                Intent intentModifySugang = new Intent(MainActivity.this, ModifySugang.class);
+                intentModifySugang.putExtra("userID", userID);
+                intentModifySugang.putExtra("userName", userName);
+                intentModifySugang.putExtra("userMajor", userMajor);
+                intentModifySugang.putExtra("studentNumber", studentNumber);
+                startActivity(intentModifySugang);
             }
         });
     }
