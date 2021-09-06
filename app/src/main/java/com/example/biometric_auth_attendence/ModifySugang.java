@@ -7,9 +7,13 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.List;
+
 public class ModifySugang extends AppCompatActivity {
     private TextView tv_major, tv_stuNum, tv_userName;
     private Button[] weeks = new Button[5];
+    private SubjectListAdapter subjectListAdapter;
+    private List<ListViewBtnItem> listViewBtnItems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
