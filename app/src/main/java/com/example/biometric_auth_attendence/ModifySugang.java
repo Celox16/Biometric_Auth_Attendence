@@ -17,7 +17,7 @@ public class ModifySugang extends AppCompatActivity {
     private TextView tv_major, tv_stuNum, tv_userName;
     private Button[] weeks = new Button[5];
     private SubjectListAdapter subjectListAdapter;
-    private List<ListViewBtnItem> listViewBtnItems;
+    private List<SubjectList> listViewBtnItems;
     private ListView listView;
 
     @Override
@@ -61,6 +61,7 @@ public class ModifySugang extends AppCompatActivity {
                 JSONObject object = jsonArray.getJSONObject(count);
                 subjectCode = object.getInt("subjectCode");
                 subjectName = object.getString("subjectName");
+                dayOfTheWeek = object.getString("dayOfTheWeek");
                 professor = object.getString("professor");
                 startTime = object.getString("startTime");
                 endTime = object.getString("endTime");

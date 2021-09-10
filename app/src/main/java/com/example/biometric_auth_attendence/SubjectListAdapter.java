@@ -1,6 +1,7 @@
 package com.example.biometric_auth_attendence;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -10,15 +11,16 @@ import java.util.List;
 
 public class SubjectListAdapter extends BaseAdapter {
     private Context context;
-    private List<ListViewBtnItem> listViewBtnItems;
+    private List<SubjectList> listViewBtnItems;
 
-    public SubjectListAdapter(Context context, List<ListViewBtnItem> listViewBtnItems){
+    public SubjectListAdapter(Context context, List<SubjectList> listViewBtnItems){
         this.context = context;
         this.listViewBtnItems = listViewBtnItems;
     }
 
     @Override
     public int getCount() {
+        Log.d("dbtest", ""+listViewBtnItems);
         return listViewBtnItems.size();
     }
 
