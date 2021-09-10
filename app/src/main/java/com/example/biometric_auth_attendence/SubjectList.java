@@ -2,16 +2,17 @@ package com.example.biometric_auth_attendence;
 
 public class SubjectList {
     int subjectCode;
-    String subjectName, professor, startTime, endTime, bluetoothName, dayOfTheWeek;
-    public int getSubjectCode(){
+    private String subjectName, professor, startTime, endTime, bluetoothName, dayOfTheWeek;
+
+    public int getSubjectCode() {
         return this.subjectCode;
     }
 
-    public String getSubjectName(){
+    public String getSubjectName() {
         return this.subjectName;
     }
 
-    public String getProfessor(){
+    public String getProfessor() {
         return this.professor;
     }
 
@@ -31,7 +32,11 @@ public class SubjectList {
         return this.dayOfTheWeek;
     }
 
-    public SubjectList(int subjectCode, String subjectName, String dayOfTheWeek, String professor, String startTime, String endTime, String bluetoothName){
+    public void setSubjectCode(int subjectCode) {
+        this.subjectCode = subjectCode;
+    }
+
+    public SubjectList(int subjectCode, String subjectName, String dayOfTheWeek, String professor, String startTime, String endTime, String bluetoothName) {
         this.subjectCode = subjectCode;
         this.subjectName = subjectName;
         this.dayOfTheWeek = dayOfTheWeek;
