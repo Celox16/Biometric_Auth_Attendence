@@ -9,37 +9,49 @@
         android:id="@+id/tv_customListview_subjectCode"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:text="subjectCode"
+        android:textColor="@color/black" />
 
     <TextView
         android:id="@+id/tv_customListview_subjectName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:text="subjectName"
+        android:textColor="@color/black" />
 
     <TextView
         android:id="@+id/tv_customListview_dayOfTheWeek"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:text="dayOfTheWeek"
+        android:textColor="@color/black" />
 
     <TextView
         android:id="@+id/tv_customListview_professor"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:text="professor"
+        android:textColor="@color/black" />
 
     <TextView
         android:id="@+id/tv_customListview_startTime"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:text="startTime"
+        android:textColor="@color/black" />
 
     <TextView
         android:id="@+id/tv_customListview_endTime"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:text="endTime"
+        android:textColor="@color/black" />
 
     <Button
         android:id="@+id/btn_customListview_sugang"

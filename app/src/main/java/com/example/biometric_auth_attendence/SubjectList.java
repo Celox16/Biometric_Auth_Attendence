@@ -36,6 +36,30 @@ public class SubjectList {
         this.subjectCode = subjectCode;
     }
 
+    public void setSubjectName(String subjectName){
+        this.subjectName = subjectName;
+    }
+
+    public void setProfessor(String professor){
+        this.professor = professor;
+    }
+
+    public void setDayOfTheWeek(String dayOfTheWeek){
+        this.dayOfTheWeek = dayOfTheWeek;
+    }
+
+    public void setStartTime(String startTime){
+        this.startTime = startTime;
+    }
+
+    public void setEndTime(String endTime){
+        this.endTime = endTime;
+    }
+
+    public void setBluetoothName(String bluetoothName){
+        this.bluetoothName = bluetoothName;
+    }
+
     public SubjectList(int subjectCode, String subjectName, String dayOfTheWeek, String professor, String startTime, String endTime, String bluetoothName) {
         this.subjectCode = subjectCode;
         this.subjectName = subjectName;

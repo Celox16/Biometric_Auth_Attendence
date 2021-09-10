@@ -36,7 +36,7 @@ public class SubjectListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View view, ViewGroup viewGroup) {
-        View view1 = View.inflate(context, R.layout.listview_modify_sugang_subject_list, null);
+        View view1 = View.inflate(context, R.layout.subject_list_item, null);
         TextView tv_subjectCode = (TextView) view1.findViewById(R.id.tv_modifySugang_stuNum);
         TextView tv_subjectName = (TextView) view1.findViewById(R.id.tv_customListview_subjectName);
         TextView tv_dayOfTheWeek = (TextView) view1.findViewById(R.id.tv_customListview_dayOfTheWeek);
