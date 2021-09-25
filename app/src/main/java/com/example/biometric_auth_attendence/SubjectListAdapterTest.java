@@ -13,7 +13,7 @@ import androidx.annotation.Nullable;
 import java.util.List;
 
 public class SubjectListAdapterTest extends ArrayAdapter<SubjectList> {
-    private TextView tv_subjectCode, tv_subjectName, tv_dayOfTheWeek, tv_professor, tv_startTime, tv_endTime;
+    //private TextView tv_subjectCode, tv_subjectName, tv_dayOfTheWeek, tv_professor, tv_startTime, tv_endTime;
     private String bluetoothName;
     Context context;
     List<SubjectList> arrayListSubjectList;
@@ -31,12 +31,12 @@ public class SubjectListAdapterTest extends ArrayAdapter<SubjectList> {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.subject_list_item, null, true);
 
         // find view by id listview items value
-        tv_subjectCode = view.findViewById(R.id.tv_customListview_subjectCode);
-        tv_subjectName = view.findViewById(R.id.tv_customListview_subjectName);
-        tv_dayOfTheWeek = view.findViewById(R.id.tv_customListview_dayOfTheWeek);
-        tv_professor = view.findViewById(R.id.tv_customListview_professor);
-        tv_startTime = view.findViewById(R.id.tv_customListview_startTime);
-        tv_endTime = view.findViewById(R.id.tv_customListview_endTime);
+        TextView tv_subjectCode = view.findViewById(R.id.tv_customListview_subjectCode);
+        TextView tv_subjectName = view.findViewById(R.id.tv_customListview_subjectName);
+        TextView tv_dayOfTheWeek = view.findViewById(R.id.tv_customListview_dayOfTheWeek);
+        TextView tv_professor = view.findViewById(R.id.tv_customListview_professor);
+        TextView tv_startTime = view.findViewById(R.id.tv_customListview_startTime);
+        TextView tv_endTime = view.findViewById(R.id.tv_customListview_endTime);
 
         // get values by arraylist and set Textview, find bluetoothName
         tv_subjectCode.setText(arrayListSubjectList.get(position).getSubjectCode());

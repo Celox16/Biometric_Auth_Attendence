@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ModifySugang extends AppCompatActivity {
+    private TextView tv_major, tv_stuNum, tv_userName;
     private Button[] weeks = new Button[5];
     private ListView listView;
     SubjectListAdapterTest subjectListAdapterTest;
@@ -37,6 +38,10 @@ public class ModifySugang extends AppCompatActivity {
         setContentView(R.layout.activity_modify_sugang);
 
         // find view by values
+        tv_major = findViewById(R.id.tv_modifySugang_major);
+        tv_stuNum = findViewById(R.id.tv_modifySugang_stuNum);
+        tv_userName = findViewById(R.id.tv_modifySugang_userName);
+
         weeks[0] = findViewById(R.id.btn_modifySugang_MON);
         weeks[1] = findViewById(R.id.btn_modifySugang_TUE);
         weeks[2] = findViewById(R.id.btn_modifySugang_WED);
@@ -56,6 +61,10 @@ public class ModifySugang extends AppCompatActivity {
         String userName = intentByBeforeActivity.getStringExtra("userName");
         int studentNumber = intentByBeforeActivity.getIntExtra("studentNumber", 0);
 
+        // set textview on the tab
+        tv_major.setText(userMajor);
+        tv_stuNum.setText("" + studentNumber);
+        tv_userName.setText(userName);
     }
 
     public void retrieveData(){
