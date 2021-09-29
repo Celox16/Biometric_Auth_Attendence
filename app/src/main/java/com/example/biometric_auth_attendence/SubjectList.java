@@ -1,7 +1,7 @@
 package com.example.biometric_auth_attendence;
 
 public class SubjectList {
-    int subjectCode;
+    private int subjectCode;
     private String subjectName, professor, startTime, endTime, bluetoothName, dayOfTheWeek;
 
     public int getSubjectCode() {
