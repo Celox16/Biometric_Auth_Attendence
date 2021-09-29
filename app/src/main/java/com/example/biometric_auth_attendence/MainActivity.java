@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
                 intentAttendanceList.putExtra("userID", userID);
                 intentAttendanceList.putExtra("userName", userName);
                 intentAttendanceList.putExtra("userMajor", userMajor);
-                intentAttendanceList.putExtra("stduentNumber", studentNumber);
+                intentAttendanceList.putExtra("studentNumber", studentNumber);
                 startActivity(intentAttendanceList);
             }
         });

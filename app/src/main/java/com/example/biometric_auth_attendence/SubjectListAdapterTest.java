@@ -39,7 +39,7 @@ public class SubjectListAdapterTest extends ArrayAdapter<SubjectList> {
         TextView tv_endTime = view.findViewById(R.id.tv_customListview_endTime);
 
         // get values by arraylist and set Textview, find bluetoothName
-        tv_subjectCode.setText(arrayListSubjectList.get(position).getSubjectCode());
+        tv_subjectCode.setText(""+arrayListSubjectList.get(position).getSubjectCode());
         tv_subjectName.setText(arrayListSubjectList.get(position).getSubjectName());
         tv_dayOfTheWeek.setText(arrayListSubjectList.get(position).getDayOfTheWeek());
         tv_professor.setText(arrayListSubjectList.get(position).getProfessor());
