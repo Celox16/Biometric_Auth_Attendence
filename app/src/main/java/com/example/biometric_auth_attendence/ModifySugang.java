@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -67,19 +68,19 @@ public class ModifySugang extends AppCompatActivity {
         tv_userName.setText(userName);
     }
 
-    public void retrieveData(){
+    public void retrieveData() {
         StringRequest request = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         subjectListArrayList.clear();
-                        try{
+                        try {
                             JSONObject jsonObject = new JSONObject(response);
                             String success = jsonObject.getString("success");
                             JSONArray jsonArray = jsonObject.getJSONArray("data");
 
-                            if(success.equals("1")){
-                                for(int i = 0; i<jsonArray.length(); i++){
+                            if (success.equals("1")) {
+                                for (int i = 0; i < jsonArray.length(); i++) {
                                     JSONObject object = jsonArray.getJSONObject(i);
 
                                     int subjectCode = object.getInt("subjectCode");
@@ -90,12 +91,12 @@ public class ModifySugang extends AppCompatActivity {
                                     String endTime = object.getString("endTime");
                                     String bluetoothName = object.getString("bluetoothName");
 
-                                    subjectList = new SubjectList(subjectCode, subjectName, dayOfTheWeek, professor,startTime, endTime, bluetoothName);
+                                    subjectList = new SubjectList(subjectCode, subjectName, dayOfTheWeek, professor, startTime, endTime, bluetoothName);
                                     subjectListArrayList.add(subjectList);
                                     subjectListAdapterTest.notifyDataSetChanged();
                                 }
                             }
-                        }catch (JSONException e){
+                        } catch (JSONException e) {
                             e.printStackTrace();
                         }
                     }
