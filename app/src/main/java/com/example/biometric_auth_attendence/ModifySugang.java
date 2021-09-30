@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -33,6 +35,8 @@ public class ModifySugang extends AppCompatActivity {
     String url = "http://125.141.27.3/biometric_auth/getDBTest.php";
     SubjectList subjectList;
 
+    private Button btn_addSubject;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +54,7 @@ public class ModifySugang extends AppCompatActivity {
         weeks[4] = findViewById(R.id.btn_modifySugang_FRI);
 
         listView = findViewById(R.id.ls_modifySugang_subjectList);
-        subjectListAdapterTest = new SubjectListAdapterTest(this, subjectListArrayList);
+        subjectListAdapterTest = new SubjectListAdapterTest(ModifySugang.this, subjectListArrayList);
         listView.setAdapter(subjectListAdapterTest);
 
         retrieveData();
@@ -106,6 +110,14 @@ public class ModifySugang extends AppCompatActivity {
                 Toast.makeText(ModifySugang.this, error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(ModifySugang.this,"test", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(request);
     }
