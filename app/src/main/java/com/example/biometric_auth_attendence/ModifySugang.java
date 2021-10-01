@@ -118,12 +118,22 @@ public class ModifySugang extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 Intent intentAddSubject = new Intent(ModifySugang.this, AddSubject.class);
+
+                // send user information
                 intentAddSubject.putExtra("userID", userID);
                 intentAddSubject.putExtra("userName", userName);
                 intentAddSubject.putExtra("userMajor", userMajor);
                 intentAddSubject.putExtra("studentNumber", studentNumber);
+
+                // send selected subject information
                 intentAddSubject.putExtra("subjectName", subjectListArrayList.get(position).getSubjectName());
                 intentAddSubject.putExtra("subjectCode", subjectListArrayList.get(position).getSubjectCode());
+                intentAddSubject.putExtra("dayOfTheWeek", subjectListArrayList.get(position).getDayOfTheWeek());
+                intentAddSubject.putExtra("professor", subjectListArrayList.get(position).getProfessor());
+                intentAddSubject.putExtra("startTime", subjectListArrayList.get(position).getStartTime());
+                intentAddSubject.putExtra("entTime", subjectListArrayList.get(position).getEndTime());
+                intentAddSubject.putExtra("bluetoothName", subjectListArrayList.get(position).getBluetoothName());
+                startActivity(intentAddSubject);
             }
         });
 

@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
         String target;
 
         @Override
-        protected void onPreExecute(){
+        protected void onPreExecute() {
             target = "http://125.141.27.3/biometric_auth/sugangList.php";
         }
 
@@ -114,21 +114,21 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(Void... voids) {
-            try{
+            try {
                 URL url = new URL(target);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 InputStream inputStream = httpURLConnection.getInputStream();
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
                 String temp;
                 StringBuilder stringBuilder = new StringBuilder();
-                while((temp = bufferedReader.readLine())!=null){
-                    stringBuilder.append(temp="\n");
+                while ((temp = bufferedReader.readLine()) != null) {
+                    stringBuilder.append(temp = "\n");
                 }
                 bufferedReader.close();
                 inputStream.close();
                 httpURLConnection.disconnect();
                 return stringBuilder.toString().trim();
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             return null;
