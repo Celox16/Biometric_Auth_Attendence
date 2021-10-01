@@ -14,6 +14,9 @@
         android:theme="@style/Theme.Biometric_Auth_Attendence"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".AddSubject"
+            android:exported="true" />
+        <activity
             android:name=".ModifySugang"
             android:exported="true" />
         <activity

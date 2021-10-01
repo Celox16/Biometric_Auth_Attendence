@@ -35,6 +35,9 @@ public class ModifySugang extends AppCompatActivity {
     String url = "http://125.141.27.3/biometric_auth/getDBTest.php";
     SubjectList subjectList;
 
+    String userID, userMajor, userName;
+    int studentNumber;
+
     private Button btn_addSubject;
 
     @Override
@@ -61,10 +64,10 @@ public class ModifySugang extends AppCompatActivity {
 
         // get user information from before activity
         Intent intentByBeforeActivity = getIntent();
-        String userID = intentByBeforeActivity.getStringExtra("userID");
-        String userMajor = intentByBeforeActivity.getStringExtra("userMajor");
-        String userName = intentByBeforeActivity.getStringExtra("userName");
-        int studentNumber = intentByBeforeActivity.getIntExtra("studentNumber", 0);
+        userID = intentByBeforeActivity.getStringExtra("userID");
+        userMajor = intentByBeforeActivity.getStringExtra("userMajor");
+        userName = intentByBeforeActivity.getStringExtra("userName");
+        studentNumber = intentByBeforeActivity.getIntExtra("studentNumber", 0);
 
         // set textview on the tab
         tv_major.setText(userMajor);
@@ -113,8 +116,14 @@ public class ModifySugang extends AppCompatActivity {
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(ModifySugang.this,"test", Toast.LENGTH_SHORT).show();
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                Intent intentAddSubject = new Intent(ModifySugang.this, AddSubject.class);
+                intentAddSubject.putExtra("userID", userID);
+                intentAddSubject.putExtra("userName", userName);
+                intentAddSubject.putExtra("userMajor", userMajor);
+                intentAddSubject.putExtra("studentNumber", studentNumber);
+                intentAddSubject.putExtra("subjectName", subjectListArrayList.get(position).getSubjectName());
+                intentAddSubject.putExtra("subjectCode", subjectListArrayList.get(position).getSubjectCode());
             }
         });
 

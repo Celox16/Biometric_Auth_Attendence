@@ -77,6 +77,7 @@ public class LoginActivity extends AppCompatActivity {
                                 intent.putExtra("studentNumber", studentNumber);
 
                                 startActivity(intent);
+                                finish();
                             }
                             else{ // failed to login
                                 Toast.makeText(getApplicationContext(), "failed to login", Toast.LENGTH_SHORT).show();
