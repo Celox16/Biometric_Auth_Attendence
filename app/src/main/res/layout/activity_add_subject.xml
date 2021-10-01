@@ -72,7 +72,7 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_gravity="center"
-        android:layout_weight="6"
+        android:layout_weight="5"
         android:orientation="horizontal">
 
         <Button
@@ -92,6 +92,25 @@
             android:layout_margin="5dp"
             android:padding="5dp"
             android:text="뒤로가기" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="subjectCode"
+            android:id="@+id/tv_addSubject_subjectCode"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="dayOfTheWeek"
+            android:id="@+id/tv_addSubject_dayOfTheWeek"/>
 
     </LinearLayout>
 

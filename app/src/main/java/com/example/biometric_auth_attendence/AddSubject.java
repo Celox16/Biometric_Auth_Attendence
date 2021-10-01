@@ -4,11 +4,21 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class AddSubject extends AppCompatActivity {
-    private TextView tv_major, tv_stuNum, tv_userName, tv_subjectName;
+    private TextView tv_major, tv_stuNum, tv_userName, tv_subjectName, tv_subjectCode, tv_dayOfTheWeek;
     private Button btn_addSubject, btn_goBack;
 
     @Override
@@ -21,6 +31,9 @@ public class AddSubject extends AppCompatActivity {
         tv_stuNum = findViewById(R.id.tv_addSubject_stuNum);
         tv_userName = findViewById(R.id.tv_addSubject_userName);
         tv_subjectName = findViewById(R.id.tv_addSubject_subjectName);
+
+        tv_subjectCode = findViewById(R.id.tv_addSubject_subjectCode);
+        tv_dayOfTheWeek = findViewById(R.id.tv_addSubject_dayOfTheWeek);
 
         // fin button values
         btn_addSubject = findViewById(R.id.btn_addSubject_addSubject);
@@ -39,7 +52,7 @@ public class AddSubject extends AppCompatActivity {
         String dayOfTheWeek = intent.getStringExtra("dayOfTheWeek");
         String professor = intent.getStringExtra("professor");
         String startTime = intent.getStringExtra("startTime");
-        String entTime = intent.getStringExtra("entTime");
+        String endTime = intent.getStringExtra("entTime");
         String bluetoothName = intent.getStringExtra("bluetoothName");
 
         // set textview on the tab
@@ -48,5 +61,46 @@ public class AddSubject extends AppCompatActivity {
         tv_stuNum.setText("" + studentNumber);
         tv_subjectName.setText(subjectName);
 
+        tv_subjectCode.setText(""+subjectCode);
+        tv_dayOfTheWeek.setText(dayOfTheWeek);
+
+        btn_addSubject.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Response.Listener<String> responseListener = new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try{
+                            JSONObject jsonObject = new JSONObject(response);
+
+                            boolean success = jsonObject.getBoolean("success");
+
+                            if(success){
+                                Toast.makeText(getApplicationContext(), "success to add subject", Toast.LENGTH_SHORT).show();
+                                finish();
+                            }
+                            else{
+                                Toast.makeText(getApplicationContext(), "failed to add subject", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+                        }catch (JSONException e){
+                            e.printStackTrace();
+                        }
+                    }
+                };
+                // request server (add subject)
+                AddSubjectRequest addSubjectRequest = new AddSubjectRequest(userID, subjectCode, subjectName,
+                        dayOfTheWeek, professor, startTime, endTime, bluetoothName, responseListener);
+                RequestQueue queue = Volley.newRequestQueue(AddSubject.this);
+                queue.add(addSubjectRequest);
+            }
+        });
+
+        btn_goBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 }
