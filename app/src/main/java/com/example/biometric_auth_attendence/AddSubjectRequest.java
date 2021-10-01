@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class AddSubjectRequest extends StringRequest {
     // set server URL (connect to php file)
-    final static private String URL = "http://125.141.27.3/biometric_auth/addSubjectTest.php";
+    final static private String URL = "http://125.141.27.3/biometric_auth/addSubject.php";
     private Map<String, String> map;
 
     public AddSubjectRequest(String userID, int subjectCode, String subjectName, String dayOfTheWeek, String professor,

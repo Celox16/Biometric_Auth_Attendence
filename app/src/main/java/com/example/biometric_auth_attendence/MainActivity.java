@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
                 intentAttendanceList.putExtra("userName", userName);
                 intentAttendanceList.putExtra("userMajor", userMajor);
                 intentAttendanceList.putExtra("studentNumber", studentNumber);
+
                 startActivity(intentAttendanceList);
             }
         });
@@ -86,11 +87,11 @@ public class MainActivity extends AppCompatActivity {
                 intentModifySugang.putExtra("studentNumber", studentNumber);
 
                 startActivity(intentModifySugang);
-                finish();
             }
         });
     }
 
+    /*
     public class BackgroundTask extends AsyncTask<Void, Void, String> {
         String target;
 
@@ -132,8 +133,6 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
             return null;
-
-
         }
-    }
+    }*/
 }

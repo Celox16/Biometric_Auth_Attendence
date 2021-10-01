@@ -53,7 +53,6 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         try{
-                            System.out.println("test" + response);
                             JSONObject jsonObject = new JSONObject(response);
 
                             boolean success = jsonObject.getBoolean("success");
