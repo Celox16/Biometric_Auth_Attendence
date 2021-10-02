@@ -38,8 +38,6 @@ public class ModifySugang extends AppCompatActivity {
     String userID, userMajor, userName;
     int studentNumber;
 
-    private Button btn_addSubject;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

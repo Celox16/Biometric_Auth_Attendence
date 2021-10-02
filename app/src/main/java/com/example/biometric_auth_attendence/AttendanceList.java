@@ -31,7 +31,8 @@ public class AttendanceList extends AppCompatActivity {
     private ListView listView;
     SubjectListAdapterTest subjectListAdapterTest;
     public static ArrayList<SubjectList> subjectListArrayList = new ArrayList<>();
-    String url = "http://125.141.27.3/biometric_auth/temp?.php";
+    //String url = "http://125.141.27.3/biometric_auth/getSubjectListFromStudentTable.php";
+    String url = "http://125.141.27.3/biometric_auth/temp.php";
     SubjectList subjectList;
 
     String userID, userMajor, userName;
@@ -51,13 +52,14 @@ public class AttendanceList extends AppCompatActivity {
         subjectListAdapterTest = new SubjectListAdapterTest(AttendanceList.this, subjectListArrayList);
         listView.setAdapter(subjectListAdapterTest);
 
+        retrieveData();
 
         //get user information from before activity
         Intent intent = getIntent();
-        String userID = intent.getStringExtra("userID");
-        String userName = intent.getStringExtra("userName");
-        String userMajor = intent.getStringExtra("userMajor");
-        int studentNumber = intent.getIntExtra("studentNumber", 0);
+        userID = intent.getStringExtra("userID");
+        userName = intent.getStringExtra("userName");
+        userMajor = intent.getStringExtra("userMajor");
+        studentNumber = intent.getIntExtra("studentNumber", 0);
 
         // set textview on the tab
         tv_major.setText(userMajor);
@@ -66,7 +68,6 @@ public class AttendanceList extends AppCompatActivity {
     }
 
     public void retrieveData() {
-
         StringRequest request = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -103,13 +104,39 @@ public class AttendanceList extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(AttendanceList.this, error.getMessage(), Toast.LENGTH_SHORT).show();
             }
-        });
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError{
+                Map<String, String> params = new HashMap<String, String>();
+
+                params.put("userID", userID);
+
+                return params;
+            }
+        };
 
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                Intent intentAttendanceCheck = new Intent(AttendanceList.this, AttendanceCheck.class);
 
+                // send user information
+                intentAttendanceCheck.putExtra("userID", userID);
+                intentAttendanceCheck.putExtra("userName", userName);
+                intentAttendanceCheck.putExtra("userMajor", userMajor);
+                intentAttendanceCheck.putExtra("studentNumber", studentNumber);
+
+                // send selected subject information
+                intentAttendanceCheck.putExtra("subjectName", subjectListArrayList.get(position).getSubjectName());
+                intentAttendanceCheck.putExtra("subjectCode", subjectListArrayList.get(position).getSubjectCode());
+                intentAttendanceCheck.putExtra("dayOfTheWeek", subjectListArrayList.get(position).getDayOfTheWeek());
+                intentAttendanceCheck.putExtra("professor", subjectListArrayList.get(position).getProfessor());
+                intentAttendanceCheck.putExtra("startTime", subjectListArrayList.get(position).getStartTime());
+                intentAttendanceCheck.putExtra("entTime", subjectListArrayList.get(position).getEndTime());
+                intentAttendanceCheck.putExtra("bluetoothName", subjectListArrayList.get(position).getBluetoothName());
+
+                startActivity(intentAttendanceCheck);
             }
         });
 
