@@ -14,16 +14,19 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.concurrent.Executor;
 
 public class AttendanceCheck extends AppCompatActivity {
     private TextView tv_major, tv_stuNum, tv_userName, tv_subjectName, tv_annotation;
-    private Button btn_attendanceCheck, btn_goBack;
+    private Button btn_attendanceCheck, btn_goBack, btn_bluetooth, btn_fingerprint;
 
     // biometric variables
     private Executor executor;
@@ -48,6 +51,8 @@ public class AttendanceCheck extends AppCompatActivity {
         // find button values
         btn_attendanceCheck = findViewById(R.id.btn_attendanceCheck_attendanceCheck);
         btn_goBack = findViewById(R.id.btn_attendanceCheck_goBack);
+        btn_bluetooth = findViewById(R.id.btn_attendanceCheck_bluetooth);
+        btn_fingerprint = findViewById(R.id.btn_attendanceCheck_fingerprint);
 
         // get user information
         Intent intent = getIntent();
@@ -87,6 +92,8 @@ public class AttendanceCheck extends AppCompatActivity {
                 super.onAuthenticationSucceeded(result);
                 tv_annotation.setText("Authentication succeeded");
                 Toast.makeText(AttendanceCheck.this, "Authentication succeeded", Toast.LENGTH_SHORT).show();
+                btn_attendanceCheck.setVisibility(View.VISIBLE);
+                btn_goBack.setVisibility(View.VISIBLE);
             }
 
             @Override
@@ -103,10 +110,22 @@ public class AttendanceCheck extends AppCompatActivity {
                 .setNegativeButtonText("Cancel")
                 .build();
 
-        // try to biometric authentication in AttendanceCheck.java
-        biometricPrompt.authenticate(promptInfo);
-
         // button click listener
+        btn_bluetooth.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        btn_fingerprint.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // try to biometric authentication in AttendanceCheck.java
+                biometricPrompt.authenticate(promptInfo);
+            }
+        });
+
         btn_attendanceCheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -120,7 +139,6 @@ public class AttendanceCheck extends AppCompatActivity {
 
                             if(success){
                                 Toast.makeText(getApplicationContext(), "success to attendance check", Toast.LENGTH_SHORT).show();
-                                finish();
                             }
                             else{
                                 Toast.makeText(getApplicationContext(), "failed to attendance check", Toast.LENGTH_SHORT).show();
@@ -131,8 +149,16 @@ public class AttendanceCheck extends AppCompatActivity {
                         }
                     }
                 };
+                // make current time
+                SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                String currentTime = format1.format(System.currentTimeMillis());
 
-                // TODO : make attendance check request class
+                // request server (send attendance check information)
+                AttendanceCheckRequest attendanceCheckRequest = new AttendanceCheckRequest(userID, subjectName, studentNumber, bluetoothName, currentTime, responseListener);
+                RequestQueue queue = Volley.newRequestQueue(AttendanceCheck.this);
+                queue.add(attendanceCheckRequest);
+
+                finish();
             }
         });
 

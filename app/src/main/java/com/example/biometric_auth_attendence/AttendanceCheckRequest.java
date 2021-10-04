@@ -12,19 +12,14 @@ public class AttendanceCheckRequest extends StringRequest {
     final static private String URL = "http://125.141.27.3/biometric_auth/temp?.php";
     private Map<String, String> map;
 
-    public AttendanceCheckRequest(String userID, int subjectCode, String subjectName,
-                                  String dayOfTheWeek, String professor, String startTime,
-                                  String endTime, String bluetoothName, Response.Listener<String> listener){
+    public AttendanceCheckRequest(String userID, String subjectName, int studentNumber, String bluetoothName, String currentTime, Response.Listener<String> listener){
         super(Method.POST, URL, listener, null);
 
         map = new HashMap<>();
-        map.put("userID", userID);
-        map.put("subjectCode", ""+subjectCode);
         map.put("subjectName", subjectName);
-        map.put("dayOfTheWeek", dayOfTheWeek);
-        map.put("professor", professor);
-        map.put("startTime", startTime);
-        map.put("endTime", endTime);
+        map.put("userID", userID);
+        map.put("studentNumber", "" + studentNumber);
+        map.put("currentTime", currentTime);
         map.put("bluetoothName", bluetoothName);
     }
 
