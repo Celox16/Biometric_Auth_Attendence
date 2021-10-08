@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.biometric.BiometricPrompt;
 import androidx.core.content.ContextCompat;
 
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -21,10 +23,13 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
+import java.util.Set;
 import java.util.concurrent.Executor;
 
 public class AttendanceCheck extends AppCompatActivity {
+    // layout variables
     private TextView tv_major, tv_stuNum, tv_userName, tv_subjectName, tv_annotation;
     private Button btn_attendanceCheck, btn_goBack, btn_bluetooth, btn_fingerprint;
 
@@ -32,6 +37,14 @@ public class AttendanceCheck extends AppCompatActivity {
     private Executor executor;
     private BiometricPrompt biometricPrompt;
     private BiometricPrompt.PromptInfo promptInfo;
+    private boolean biometricJudgement = false;
+
+    // bluetooth variables
+    private static final int REQUEST_ENABLE_BT = 0;
+    private static final int REQUEST_DISCOVER_BT = 1;
+    private BluetoothAdapter bluetoothAdapter;
+    private boolean bluetoothJudgement = false;
+
 
     @RequiresApi(api = Build.VERSION_CODES.P)
 
@@ -39,6 +52,9 @@ public class AttendanceCheck extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_attendance_check);
+
+        // bluetooth adapter setting
+        bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 
         //find textview values
         tv_major = findViewById(R.id.tv_attendanceCheck_major);
@@ -92,8 +108,11 @@ public class AttendanceCheck extends AppCompatActivity {
                 super.onAuthenticationSucceeded(result);
                 tv_annotation.setText("Authentication succeeded");
                 Toast.makeText(AttendanceCheck.this, "Authentication succeeded", Toast.LENGTH_SHORT).show();
-                btn_attendanceCheck.setVisibility(View.VISIBLE);
-                btn_goBack.setVisibility(View.VISIBLE);
+                biometricJudgement = true;
+                if(bluetoothJudgement && biometricJudgement) {
+                    btn_attendanceCheck.setVisibility(View.VISIBLE);
+                    btn_goBack.setVisibility(View.VISIBLE);
+                }
             }
 
             @Override
@@ -114,7 +133,30 @@ public class AttendanceCheck extends AppCompatActivity {
         btn_bluetooth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                if(bluetoothAdapter.isEnabled()){
+                    Set<BluetoothDevice> devices = bluetoothAdapter.getBondedDevices();
+                    for(BluetoothDevice device : devices){
+                        try{
+                            Method method = device.getClass().getMethod("isConnected", (Class[]) null);
+                            boolean connected = (boolean) method.invoke(device, (Object[]) null);
+                            if(connected && device.getAddress().equals(bluetoothName)){
+                                    bluetoothJudgement = true;
+                            }
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
+                    }
+                    if(bluetoothJudgement && biometricJudgement){
+                        btn_attendanceCheck.setVisibility(View.VISIBLE);
+                        btn_goBack.setVisibility(View.VISIBLE);
+                    }
+                    else{
+                        Toast.makeText(getApplicationContext(), "Connect to right bluetooth device", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                else{
+                    Toast.makeText(getApplicationContext(), "Turn on bluetooth to get paired devices", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -152,6 +194,7 @@ public class AttendanceCheck extends AppCompatActivity {
                 // make current time
                 SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 String currentTime = format1.format(System.currentTimeMillis());
+                Toast.makeText(AttendanceCheck.this, currentTime, Toast.LENGTH_SHORT).show();
 
                 // request server (send attendance check information)
                 AttendanceCheckRequest attendanceCheckRequest = new AttendanceCheckRequest(userID, subjectName, studentNumber, bluetoothName, currentTime, responseListener);

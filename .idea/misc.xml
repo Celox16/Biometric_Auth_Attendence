@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/park/AndroidStudioProjects/Biometric_Auth_Attendence/app/src/main/res/layout/activity_attendance_check.xml" value="0.3359375" />
         <entry key="..\:/Users/park/AndroidStudioProjects/Biometric_Auth_Attendence/app/src/main/res/layout/activity_attendance_list.xml" value="0.33" />
         <entry key="..\:/Users/park/AndroidStudioProjects/Biometric_Auth_Attendence/app/src/main/res/layout/activity_login.xml" value="0.3359375" />
         <entry key="..\:/Users/park/AndroidStudioProjects/Biometric_Auth_Attendence/app/src/main/res/layout/activity_main.xml" value="0.32472826086956524" />

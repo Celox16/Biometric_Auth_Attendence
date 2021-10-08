@@ -67,7 +67,7 @@
         android:layout_gravity="center"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="지문인증을 완료해주세요." />
+        android:text="블루투스 연결과, 지문인증을 해주세요." />
 
     <LinearLayout
         android:layout_width="wrap_content"
