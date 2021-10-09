@@ -197,24 +197,45 @@ public class AttendanceCheck extends AppCompatActivity {
                     }
                 };
                 // make current time
-                SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                SimpleDateFormat format1 = new SimpleDateFormat("HH:mm");
                 String currentTime = format1.format(System.currentTimeMillis());
+                SimpleDateFormat format2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                String sendCurrentTime = format2.format(System.currentTimeMillis());
 
                 // make current day of week
                 LocalDate localDate = LocalDate.now();
                 DayOfWeek dayOfWeek = localDate.getDayOfWeek();
 
+                // calculate time (for judgement attendance status), "f" is mean formatted
+                int fStartTime = Integer.parseInt(startTime.replace(":", ""));
+                int fEndTime = Integer.parseInt(endTime.replace(":", ""));
+                int fCurrentTime = Integer.parseInt(currentTime.replace(":", ""));
 
-                /*Toast.makeText(AttendanceCheck.this, currentTime + ", " +
-                        dayOfWeek.getDisplayName(TextStyle.SHORT, Locale.US).toUpperCase(Locale.ROOT), Toast.LENGTH_SHORT).show();*/
                 if(!dayOfWeek.getDisplayName(TextStyle.SHORT, Locale.US).toUpperCase(Locale.ROOT).equals(dayOfTheWeek)){
                     Toast.makeText(getApplicationContext(),subjectName + "(은)는" + dayOfTheWeek + "요일입니다.", Toast.LENGTH_SHORT).show();
                 }
+                else if(fCurrentTime < fStartTime){
+                    Toast.makeText(getApplicationContext(), "수업시작 전입니다.", Toast.LENGTH_SHORT).show();
+                }
+                else if(fCurrentTime >= fStartTime && fCurrentTime <= (fStartTime + 5)){
+                    // TODO : make attendance request default
+                    //  request server (send attendance check information), make attendance status
+                    AttendanceCheckRequest attendanceCheckRequest =
+                            new AttendanceCheckRequest(userID, subjectName, studentNumber, bluetoothName, sendCurrentTime, responseListener);
+                    RequestQueue queue = Volley.newRequestQueue(AttendanceCheck.this);
+                    queue.add(attendanceCheckRequest);
 
-                // request server (send attendance check information)
-                AttendanceCheckRequest attendanceCheckRequest = new AttendanceCheckRequest(userID, subjectName, studentNumber, bluetoothName, currentTime, responseListener);
-                RequestQueue queue = Volley.newRequestQueue(AttendanceCheck.this);
-                queue.add(attendanceCheckRequest);
+                    Toast.makeText(getApplicationContext(), "출석이 완료되었습니다.", Toast.LENGTH_SHORT).show();
+                }
+                else if(fCurrentTime < (fStartTime + 5) && fCurrentTime <= (fStartTime + 30)){
+                    // TODO : make attendance request late
+                }
+                else if(fCurrentTime > (fStartTime + 30) && fCurrentTime <= fEndTime){
+                    // TODO : make attendance request toooooo late
+                }
+                else {
+                    Toast.makeText(getApplicationContext(),"수업이 끝났습니다.", Toast.LENGTH_SHORT).show();
+                }
 
                 finish();
             }
