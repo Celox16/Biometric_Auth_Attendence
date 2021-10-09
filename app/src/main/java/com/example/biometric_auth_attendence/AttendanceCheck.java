@@ -25,6 +25,10 @@ import org.json.JSONObject;
 
 import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.format.TextStyle;
+import java.util.Locale;
 import java.util.Set;
 import java.util.concurrent.Executor;
 
@@ -43,7 +47,8 @@ public class AttendanceCheck extends AppCompatActivity {
     private static final int REQUEST_ENABLE_BT = 0;
     private static final int REQUEST_DISCOVER_BT = 1;
     private BluetoothAdapter bluetoothAdapter;
-    private boolean bluetoothJudgement = false;
+    // TODO : change to boolean value (false is default value)
+    private boolean bluetoothJudgement = true;
 
 
     @RequiresApi(api = Build.VERSION_CODES.P)
@@ -194,7 +199,17 @@ public class AttendanceCheck extends AppCompatActivity {
                 // make current time
                 SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 String currentTime = format1.format(System.currentTimeMillis());
-                Toast.makeText(AttendanceCheck.this, currentTime, Toast.LENGTH_SHORT).show();
+
+                // make current day of week
+                LocalDate localDate = LocalDate.now();
+                DayOfWeek dayOfWeek = localDate.getDayOfWeek();
+
+
+                /*Toast.makeText(AttendanceCheck.this, currentTime + ", " +
+                        dayOfWeek.getDisplayName(TextStyle.SHORT, Locale.US).toUpperCase(Locale.ROOT), Toast.LENGTH_SHORT).show();*/
+                if(!dayOfWeek.getDisplayName(TextStyle.SHORT, Locale.US).toUpperCase(Locale.ROOT).equals(dayOfTheWeek)){
+                    Toast.makeText(getApplicationContext(),subjectName + "(은)는" + dayOfTheWeek + "요일입니다.", Toast.LENGTH_SHORT).show();
+                }
 
                 // request server (send attendance check information)
                 AttendanceCheckRequest attendanceCheckRequest = new AttendanceCheckRequest(userID, subjectName, studentNumber, bluetoothName, currentTime, responseListener);

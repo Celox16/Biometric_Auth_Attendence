@@ -3,14 +3,12 @@
     package="com.example.biometric_auth_attendence">
     <!-- set permission -->
     <!-- connect to server -->
-    <uses-permission android:name="android.permission.INTERNET" />
-    <!-- use biometric -->
-    <uses-permission android:name="android.permission.USE_BIOMETRIC" />
-    <!-- use bluetooth -->
-    <uses-permission android:name="android.permission.BLUETOOTH"/>
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
-    <uses-permission android:name="android.permission.BLUETOOTH_ADVERTISE"/>
-    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT"/>
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- use biometric -->
+    <uses-permission android:name="android.permission.USE_BIOMETRIC" /> <!-- use bluetooth -->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADVERTISE" />
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
 
     <application
         android:allowBackup="true"
@@ -20,6 +18,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Biometric_Auth_Attendence"
         android:usesCleartextTraffic="true">
+        <activity
+            android:name=".AttendanceResult"
+            android:exported="true" />
+        <activity
+            android:name=".AttendanceSearch"
+            android:exported="true" />
         <activity
             android:name=".AttendanceCheck"
             android:exported="true" />

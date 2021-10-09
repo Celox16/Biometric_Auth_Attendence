@@ -65,6 +65,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // make a new intent and parse user info data
+                Intent intentAttendanceSearch = new Intent(getApplicationContext(), AttendanceSearch.class);
+                intentAttendanceSearch.putExtra("userID", userID);
+                intentAttendanceSearch.putExtra("userName", userName);
+                intentAttendanceSearch.putExtra("userMajor", userMajor);
+                intentAttendanceSearch.putExtra("studentNumber", studentNumber);
+
+                startActivity(intentAttendanceSearch);
             }
         });
 
