@@ -221,19 +221,19 @@ public class AttendanceCheck extends AppCompatActivity {
                     // TODO : make attendance request default
                     String status = "출석";
                     AttendanceCheckRequest attendanceCheckRequest =
-                            new AttendanceCheckRequest(subjectName, userID, Integer.toString(studentNumber), sendCurrentTime,
-                                    status, responseListener);
+                            new AttendanceCheckRequest(subjectName, userID, Integer.toString(studentNumber), userName,
+                                    sendCurrentTime, status, responseListener);
                     RequestQueue queue = Volley.newRequestQueue(AttendanceCheck.this);
                     queue.add(attendanceCheckRequest);
 
                     Toast.makeText(getApplicationContext(), "출석입니다.", Toast.LENGTH_SHORT).show();
                 }
-                else if(fCurrentTime < (fStartTime + 5) && fCurrentTime <= (fStartTime + 30)){
+                else if(fCurrentTime > (fStartTime + 5) && fCurrentTime <= (fStartTime + 30)){
                     // TODO : make attendance request late
                     String status = "지각";
                     AttendanceCheckRequest attendanceCheckRequest =
-                            new AttendanceCheckRequest(subjectName, userID, Integer.toString(studentNumber), sendCurrentTime,
-                                    status, responseListener);
+                            new AttendanceCheckRequest(subjectName, userID, Integer.toString(studentNumber), userName,
+                                    sendCurrentTime, status, responseListener);
                     RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
                     queue.add(attendanceCheckRequest);
 

@@ -12,7 +12,7 @@ public class AttendanceCheckRequest extends StringRequest {
     final static private String URL = "http://125.141.27.3/biometric_auth/attendanceCheck.php";
     private Map<String, String> map;
 
-    public AttendanceCheckRequest(String subjectName, String userID, String studentNumber,
+    public AttendanceCheckRequest(String subjectName, String userID, String studentNumber, String userName,
                                   String arrivalTime, String status, Response.Listener<String> listener){
         super(Method.POST, URL, listener, null);
 
@@ -20,6 +20,7 @@ public class AttendanceCheckRequest extends StringRequest {
         map.put("subjectName", subjectName);
         map.put("userID", userID);
         map.put("studentNumber", studentNumber);
+        map.put("userName", userName);
         map.put("arrivalTime", arrivalTime);
         map.put("status", status);
     }
