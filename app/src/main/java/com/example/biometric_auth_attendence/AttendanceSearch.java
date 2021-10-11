@@ -130,10 +130,13 @@ public class AttendanceSearch extends AppCompatActivity {
                 intentAttendanceResult.putExtra("dayOfTheWeek", subjectListArrayList.get(position).getDayOfTheWeek());
                 intentAttendanceResult.putExtra("professor", subjectListArrayList.get(position).getProfessor());
                 intentAttendanceResult.putExtra("startTime", subjectListArrayList.get(position).getStartTime());
-                intentAttendanceResult.putExtra("entTime", subjectListArrayList.get(position).getEndTime());
+                intentAttendanceResult.putExtra("endTime", subjectListArrayList.get(position).getEndTime());
                 intentAttendanceResult.putExtra("bluetoothName", subjectListArrayList.get(position).getBluetoothName());
 
+                // TODO : fix error
                 startActivity(intentAttendanceResult);
+
+                Toast.makeText(getApplicationContext(), subjectListArrayList.get(position).getSubjectName(), Toast.LENGTH_SHORT).show();
             }
         });
 
