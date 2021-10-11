@@ -207,12 +207,9 @@ public class AttendanceCheck extends AppCompatActivity {
                 DayOfWeek dayOfWeek = localDate.getDayOfWeek();
 
                 // calculate time (for judgement attendance status), "f" is mean formatted
-                /////////////////////error line/////////////////
                 int fStartTime = Integer.parseInt(startTime.replace(":", ""));
                 int fEndTime = Integer.parseInt(endTime.replace(":", ""));
                 int fCurrentTime = Integer.parseInt(currentTime.replace(":", ""));
-                ////////////////////////////////////////////////
-                /*
 
                 if(!dayOfWeek.getDisplayName(TextStyle.SHORT, Locale.US).toUpperCase(Locale.ROOT).equals(dayOfTheWeek)){
                     Toast.makeText(getApplicationContext(),subjectName + "(은)는" + dayOfTheWeek + "요일입니다.", Toast.LENGTH_SHORT).show();
@@ -243,15 +240,13 @@ public class AttendanceCheck extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "지각입니다.", Toast.LENGTH_SHORT).show();
                 }
                 else if(fCurrentTime > (fStartTime + 30) && fCurrentTime <= fEndTime){
-                    // TODO : make attendance request toooooo late
                     Toast.makeText(getApplicationContext(), "수업에 너무 늦으셨습니다.", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    Toast.makeText(getApplicationContext(),"수업이 끝났습니다.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "수업이 끝났습니다.", Toast.LENGTH_SHORT).show();
                 }
+
                 finish();
-                */
-                Toast.makeText(getApplicationContext(), "test", Toast.LENGTH_SHORT).show();
             }
         });
 

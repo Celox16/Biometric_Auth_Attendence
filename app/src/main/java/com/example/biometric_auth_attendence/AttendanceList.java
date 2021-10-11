@@ -132,7 +132,7 @@ public class AttendanceList extends AppCompatActivity {
                 intentAttendanceCheck.putExtra("dayOfTheWeek", subjectListArrayList.get(position).getDayOfTheWeek());
                 intentAttendanceCheck.putExtra("professor", subjectListArrayList.get(position).getProfessor());
                 intentAttendanceCheck.putExtra("startTime", subjectListArrayList.get(position).getStartTime());
-                intentAttendanceCheck.putExtra("entTime", subjectListArrayList.get(position).getEndTime());
+                intentAttendanceCheck.putExtra("endTime", subjectListArrayList.get(position).getEndTime());
                 intentAttendanceCheck.putExtra("bluetoothName", subjectListArrayList.get(position).getBluetoothName());
 
                 startActivity(intentAttendanceCheck);
