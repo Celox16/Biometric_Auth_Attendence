@@ -27,12 +27,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class AttendanceSearch extends AppCompatActivity {
-    // TODO : make a new listview adapter and refactoring this class
     private TextView tv_major, tv_stuNum, tv_userName;
     private ListView listView;
     SubjectListAdapterTest subjectListAdapterTest;
     public static ArrayList<SubjectList> subjectListArrayList = new ArrayList<>();
-    String url = "http://125.141.27.3/biometric_auth";
+    String url = "http://125.141.27.3/biometric_auth/getSubjectListFromStudentTable.php";
     SubjectList subjectList;
 
     String userID, userMajor, userName;
@@ -52,9 +51,8 @@ public class AttendanceSearch extends AppCompatActivity {
         subjectListAdapterTest = new SubjectListAdapterTest(AttendanceSearch.this, subjectListArrayList);
         listView.setAdapter(subjectListAdapterTest);
 
-        // TODO : Listview function
+        retrieveData();
 
-        // get user information from before activity
         Intent intent = getIntent();
         userID = intent.getStringExtra("userID");
         userName = intent.getStringExtra("userName");
