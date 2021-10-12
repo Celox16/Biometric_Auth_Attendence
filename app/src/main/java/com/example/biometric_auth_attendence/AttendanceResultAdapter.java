@@ -36,8 +36,8 @@ public class AttendanceResultAdapter extends ArrayAdapter<AttendanceResultList> 
         // get values by arraylist and set Textview
         // formatting day and time  (2021-10-11 15:00:06)
         //                           0123456789012345678
-        tv_day.setText(attendanceResultLists.get(position).getArrivalTime().substring(5,9));
-        tv_time.setText(attendanceResultLists.get(position).getArrivalTime().substring(11));
+        tv_day.setText(attendanceResultLists.get(position).getDay());
+        tv_time.setText(attendanceResultLists.get(position).getTime());
         tv_status.setText(attendanceResultLists.get(position).getStatus());
 
         return view;

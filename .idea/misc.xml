@@ -3,21 +3,21 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/park/AndroidStudioProjects/Biometric_Auth_Attendence/app/src/main/res/layout/activity_attendance_check.xml" value="0.3359375" />
         <entry key="..\:/Users/park/AndroidStudioProjects/Biometric_Auth_Attendence/app/src/main/res/layout/activity_attendance_list.xml" value="0.33" />
+        <entry key="..\:/Users/park/AndroidStudioProjects/Biometric_Auth_Attendence/app/src/main/res/layout/activity_attendance_result.xml" value="0.33" />
         <entry key="..\:/Users/park/AndroidStudioProjects/Biometric_Auth_Attendence/app/src/main/res/layout/activity_login.xml" value="0.3359375" />
         <entry key="..\:/Users/park/AndroidStudioProjects/Biometric_Auth_Attendence/app/src/main/res/layout/activity_main.xml" value="0.32472826086956524" />
         <entry key="..\:/Users/park/AndroidStudioProjects/Biometric_Auth_Attendence/app/src/main/res/layout/activity_modify_sugang.xml" value="0.32472826086956524" />
         <entry key="..\:/Users/park/AndroidStudioProjects/Biometric_Auth_Attendence/app/src/main/res/layout/activity_register.xml" value="0.3359375" />
+        <entry key="..\:/Users/park/AndroidStudioProjects/Biometric_Auth_Attendence/app/src/main/res/layout/attendance_list_item.xml" value="0.333786231884058" />
         <entry key="..\:/Users/park/AndroidStudioProjects/Biometric_Auth_Attendence/app/src/main/res/layout/listview_modify_sugang_subject_list.xml" value="0.3079710144927536" />
         <entry key="app/src/main/res/layout/activity_add_subject.xml" value="0.19202898550724637" />
         <entry key="app/src/main/res/layout/activity_attendance_check.xml" value="0.18704710144927536" />
         <entry key="app/src/main/res/layout/activity_attendance_list.xml" value="0.19202898550724637" />
-        <entry key="app/src/main/res/layout/activity_attendance_result.xml" value="0.18206521739130435" />
-        <entry key="app/src/main/res/layout/activity_attendance_search.xml" value="0.18206521739130435" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2151268115942029" />
         <entry key="app/src/main/res/layout/activity_modify_sugang.xml" value="0.19202898550724637" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.19202898550724637" />
-        <entry key="app/src/main/res/layout/attendance_list_item.xml" value="0.18206521739130435" />
         <entry key="app/src/main/res/layout/subject_list_item.xml" value="0.19202898550724637" />
       </map>
     </option>

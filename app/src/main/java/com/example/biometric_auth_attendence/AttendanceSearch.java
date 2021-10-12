@@ -53,6 +53,7 @@ public class AttendanceSearch extends AppCompatActivity {
 
         retrieveData();
 
+        // get user information from before activity
         Intent intent = getIntent();
         userID = intent.getStringExtra("userID");
         userName = intent.getStringExtra("userName");
@@ -116,7 +117,7 @@ public class AttendanceSearch extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                Intent intentAttendanceResult = new Intent(getApplicationContext(), AttendanceResult.class);
+                Intent intentAttendanceResult = new Intent(AttendanceSearch.this, AttendanceResult.class);
 
                 // send user information
                 intentAttendanceResult.putExtra("userID", userID);
@@ -133,10 +134,7 @@ public class AttendanceSearch extends AppCompatActivity {
                 intentAttendanceResult.putExtra("endTime", subjectListArrayList.get(position).getEndTime());
                 intentAttendanceResult.putExtra("bluetoothName", subjectListArrayList.get(position).getBluetoothName());
 
-                // TODO : fix error
                 startActivity(intentAttendanceResult);
-
-                Toast.makeText(getApplicationContext(), subjectListArrayList.get(position).getSubjectName(), Toast.LENGTH_SHORT).show();
             }
         });
 

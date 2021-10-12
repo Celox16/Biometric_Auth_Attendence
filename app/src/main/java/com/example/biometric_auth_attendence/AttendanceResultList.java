@@ -1,31 +1,22 @@
 package com.example.biometric_auth_attendence;
 
 public class AttendanceResultList {
-    private String userID, userName, arrivalTime, status;
-    private int studentNumber;
+    private String day, time, status;
 
-    public String getUserID() {
-        return userID;
+    public String getDay() {
+        return day;
     }
 
-    public void setUserID(String userID) {
-        this.userID = userID;
+    public void setDay(String day) {
+        this.day = day;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getTime() {
+        return time;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getArrivalTime() {
-        return arrivalTime;
-    }
-
-    public void setArrivalTime(String arrivalTime) {
-        this.arrivalTime = arrivalTime;
+    public void setTime(String time) {
+        this.time = time;
     }
 
     public String getStatus() {
@@ -36,19 +27,9 @@ public class AttendanceResultList {
         this.status = status;
     }
 
-    public int getStudentNumber() {
-        return studentNumber;
-    }
-
-    public void setStudentNumber(int studentNumber) {
-        this.studentNumber = studentNumber;
-    }
-
-    public AttendanceResultList(String userID, int studentNumber, String userName, String arrivalTime, String status){
-        this.userID = userID;
-        this.studentNumber = studentNumber;
-        this.userName = userName;
-        this.arrivalTime = arrivalTime;
+    public AttendanceResultList(String day, String time, String status){
+        this.day = day;
+        this.time = time;
         this.status = status;
     }
 }

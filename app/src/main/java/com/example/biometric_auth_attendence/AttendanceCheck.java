@@ -218,7 +218,6 @@ public class AttendanceCheck extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "수업시작 전입니다.", Toast.LENGTH_SHORT).show();
                 }
                 else if(fCurrentTime >= fStartTime && fCurrentTime <= (fStartTime + 5)){
-                    // TODO : make attendance request default
                     String status = "출석";
                     AttendanceCheckRequest attendanceCheckRequest =
                             new AttendanceCheckRequest(subjectName, userID, Integer.toString(studentNumber), userName,
@@ -229,7 +228,6 @@ public class AttendanceCheck extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "출석입니다.", Toast.LENGTH_SHORT).show();
                 }
                 else if(fCurrentTime > (fStartTime + 5) && fCurrentTime <= (fStartTime + 30)){
-                    // TODO : make attendance request late
                     String status = "지각";
                     AttendanceCheckRequest attendanceCheckRequest =
                             new AttendanceCheckRequest(subjectName, userID, Integer.toString(studentNumber), userName,
