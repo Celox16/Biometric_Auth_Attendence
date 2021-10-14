@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         // get user info
         Intent intent = getIntent();
         String userID = intent.getStringExtra("userID");
+        String userPassword = intent.getStringExtra("userPassword");
         String userMajor = intent.getStringExtra("userMajor");
         String userName = intent.getStringExtra("userName");
         int studentNumber = intent.getIntExtra("studentNumber", 0);
@@ -50,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         btn_attendance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // make a new intent and parse user info data
+                // a new intent and parse user info data
                 Intent intentAttendanceList = new Intent(MainActivity.this, AttendanceList.class);
                 intentAttendanceList.putExtra("userID", userID);
                 intentAttendanceList.putExtra("userName", userName);
@@ -64,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         btn_check.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // make a new intent and parse user info data
+                //a new intent and parse user info data
                 Intent intentAttendanceSearch = new Intent(getApplicationContext(), AttendanceSearch.class);
                 intentAttendanceSearch.putExtra("userID", userID);
                 intentAttendanceSearch.putExtra("userName", userName);
@@ -78,8 +79,15 @@ public class MainActivity extends AppCompatActivity {
         btn_userInfoModify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // make a new intent and parse user info data
+                //a new intent and parse user info data
+                Intent intentUserInfoModify = new Intent(getApplicationContext(), UserInfoModify.class);
+                intentUserInfoModify.putExtra("userID", userID);
+                intentUserInfoModify.putExtra("userPassword", userPassword);
+                intentUserInfoModify.putExtra("userMajor", userMajor);
+                intentUserInfoModify.putExtra("studentNumber", studentNumber);
 
+                startActivity(intentUserInfoModify);
+                finish();
             }
         });
 

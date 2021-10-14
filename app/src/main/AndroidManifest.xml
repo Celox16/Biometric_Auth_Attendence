@@ -19,6 +19,9 @@
         android:theme="@style/Theme.Biometric_Auth_Attendence"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".UserInfoModify"
+            android:exported="true" />
+        <activity
             android:name=".AttendanceResult"
             android:exported="true" />
         <activity

@@ -79,7 +79,7 @@ public class AttendanceResult extends AppCompatActivity {
         tv_time.setText(startTime + " ~ " + endTime);
     }
 
-    public void retrieveData(){
+    public void retrieveData() {
         StringRequest request = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -90,8 +90,8 @@ public class AttendanceResult extends AppCompatActivity {
                             String success = jsonObject.getString("success");
                             JSONArray jsonArray = jsonObject.getJSONArray("data");
 
-                            if(success.equals("1")){
-                                for(int i = 0; i < jsonArray.length(); i++){
+                            if (success.equals("1")) {
+                                for (int i = 0; i < jsonArray.length(); i++) {
                                     JSONObject object = jsonArray.getJSONObject(i);
 
                                     // set values by object
@@ -104,8 +104,8 @@ public class AttendanceResult extends AppCompatActivity {
                                     // formatting correct day, time format
                                     //  2021-10-11 15:00:06
                                     //  1234567890123456789
-                                    String day = arrivalTime.substring(6, 10);
-                                    String time = arrivalTime.substring(12);
+                                    String day = arrivalTime.substring(5, 10);
+                                    String time = arrivalTime.substring(11);
 
                                     attendanceResultList = new AttendanceResultList(day, time, status);
                                     attendanceResultListArrayList.add(attendanceResultList);
@@ -121,7 +121,7 @@ public class AttendanceResult extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
             }
-        }){
+        }) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
