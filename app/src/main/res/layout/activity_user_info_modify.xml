@@ -16,7 +16,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/tv_attendanceResult_major"
+            android:id="@+id/tv_userInfoModify_major"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -30,7 +30,7 @@
             android:layout_weight="1" />
 
         <TextView
-            android:id="@+id/tv_attendanceResult_stuNum"
+            android:id="@+id/tv_userInfoModify_stuNum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -39,7 +39,7 @@
             android:textColor="@color/black" />
 
         <TextView
-            android:id="@+id/tv_attendanceResult_userName"
+            android:id="@+id/tv_userInfoModify_userName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

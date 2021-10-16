@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -16,8 +17,28 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
+    // view variables
     private TextView tv_major, tv_stuNum, tv_userName;
     private Button btn_attendance, btn_check, btn_userInfoModify, btn_sugangInfoModify;
+
+    // on back pressed variables
+    private long backKeyPressedTime = 0;
+
+    @Override
+    public void onBackPressed() {
+        // delete primitive onBackPressed
+        // super.onBackPressed();
+        if(System.currentTimeMillis() > backKeyPressedTime + 2000){
+            backKeyPressedTime = System.currentTimeMillis();
+            Toast.makeText(getApplicationContext(), "뒤로가기를 한번 더 누르시면 종료됩니다.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        //
+        if(System.currentTimeMillis() <= backKeyPressedTime + 2000){
+            finish();
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intentUserInfoModify = new Intent(getApplicationContext(), UserInfoModify.class);
                 intentUserInfoModify.putExtra("userID", userID);
                 intentUserInfoModify.putExtra("userPassword", userPassword);
+                intentUserInfoModify.putExtra("userName", userName);
                 intentUserInfoModify.putExtra("userMajor", userMajor);
                 intentUserInfoModify.putExtra("studentNumber", studentNumber);
 
