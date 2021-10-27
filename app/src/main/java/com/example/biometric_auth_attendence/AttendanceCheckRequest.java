@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class AttendanceCheckRequest extends StringRequest {
     // set server URL (connect to php file)
-    final static private String URL = "http://125.141.27.3/biometric_auth/attendanceCheck.php";
+    final static private String URL = Variables.address + "attendanceCheck.php";
     private Map<String, String> map;
 
     public AttendanceCheckRequest(String subjectName, String userID, String studentNumber, String userName,

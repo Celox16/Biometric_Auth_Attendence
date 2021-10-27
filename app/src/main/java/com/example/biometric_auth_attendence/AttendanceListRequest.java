@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class AttendanceListRequest extends StringRequest {
     // set server URL (connect to php file)
-    final static private String URL = "http://125.141.27.3/biometric_auth/getSubjectListFromStudentTable.php";
+    final static private String URL = Variables.address + "getSubjectListFromStudentTable.php";
     private Map<String, String> map;
 
     private AttendanceListRequest(String userID, Response .Listener<String> listener){

@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class RegisterRequest extends StringRequest {
     // set server URL (connect to php file)
-    final static private String URL = "http://125.141.27.3/biometric_auth/registerTest.php";
+    final static private String URL = Variables.address + "registerTest.php";
     private Map<String, String> map;
 
     public RegisterRequest(String userID, String userPassword, String userName, int studentNumber, String userMajor, Response.Listener<String> listener){

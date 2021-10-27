@@ -32,7 +32,7 @@ public class ModifySugang extends AppCompatActivity {
     private ListView listView;
     SubjectListAdapterTest subjectListAdapterTest;
     public static ArrayList<SubjectList> subjectListArrayList = new ArrayList<>();
-    String url = "http://125.141.27.3/biometric_auth/getDBTest.php";
+    String url = Variables.address + "getDBTest.php";
     SubjectList subjectList;
 
     String userID, userMajor, userName;

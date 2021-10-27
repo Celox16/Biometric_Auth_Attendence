@@ -29,7 +29,7 @@ public class AttendanceResult extends AppCompatActivity {
     private ListView listView;
     AttendanceResultAdapter attendanceResultAdapter;
     public static ArrayList<AttendanceResultList> attendanceResultListArrayList = new ArrayList<>();
-    String url = "http://125.141.27.3/biometric_auth/attendanceResult.php";
+    String url = Variables.address + "attendanceResult.php";
     AttendanceResultList attendanceResultList;
 
     String userID, userMajor, userName, subjectName, startTime, endTime, dayOfTheWeek;

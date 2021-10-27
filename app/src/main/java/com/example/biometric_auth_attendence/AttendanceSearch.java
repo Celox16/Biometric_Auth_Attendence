@@ -31,7 +31,7 @@ public class AttendanceSearch extends AppCompatActivity {
     private ListView listView;
     SubjectListAdapterTest subjectListAdapterTest;
     public static ArrayList<SubjectList> subjectListArrayList = new ArrayList<>();
-    String url = "http://125.141.27.3/biometric_auth/getSubjectListFromStudentTable.php";
+    String url = Variables.address + "getSubjectListFromStudentTable.php";
     SubjectList subjectList;
 
     String userID, userMajor, userName;
