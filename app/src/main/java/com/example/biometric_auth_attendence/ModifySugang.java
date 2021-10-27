@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -32,6 +31,7 @@ public class ModifySugang extends AppCompatActivity {
     private ListView listView;
     SubjectListAdapterTest subjectListAdapterTest;
     public static ArrayList<SubjectList> subjectListArrayList = new ArrayList<>();
+    public static ArrayList<SubjectList> specificArrayList = new ArrayList<>();
     String url = Variables.address + "getDBTest.php";
     SubjectList subjectList;
 
@@ -58,6 +58,8 @@ public class ModifySugang extends AppCompatActivity {
         subjectListAdapterTest = new SubjectListAdapterTest(ModifySugang.this, subjectListArrayList);
         listView.setAdapter(subjectListAdapterTest);
 
+        specificArrayList.clear();
+
         retrieveData();
 
         // get user information from before activity
@@ -71,6 +73,81 @@ public class ModifySugang extends AppCompatActivity {
         tv_major.setText(userMajor);
         tv_stuNum.setText("" + studentNumber);
         tv_userName.setText(userName);
+
+        // MON
+        weeks[0].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                specificArrayList.clear();
+                for(int i = 0; i < subjectListArrayList.size(); i++){
+                    if(subjectListArrayList.get(i).getDayOfTheWeek().equals("MON")){
+                        specificArrayList.add(subjectListArrayList.get(i));
+                    }
+                }
+                subjectListAdapterTest = new SubjectListAdapterTest(getApplicationContext(), specificArrayList);
+                listView.setAdapter(subjectListAdapterTest);
+            }
+        });
+
+        // TUE
+        weeks[1].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                specificArrayList.clear();
+                for(int i = 0; i < subjectListArrayList.size(); i++){
+                    if(subjectListArrayList.get(i).getDayOfTheWeek().equals("TUE")){
+                        specificArrayList.add(subjectListArrayList.get(i));
+                    }
+                }
+                subjectListAdapterTest = new SubjectListAdapterTest(getApplicationContext(), specificArrayList);
+                listView.setAdapter(subjectListAdapterTest);
+            }
+        });
+
+        // WED
+        weeks[2].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                specificArrayList.clear();
+                for(int i = 0; i < subjectListArrayList.size(); i++){
+                    if(subjectListArrayList.get(i).getDayOfTheWeek().equals("WED")){
+                        specificArrayList.add(subjectListArrayList.get(i));
+                    }
+                }
+                subjectListAdapterTest = new SubjectListAdapterTest(getApplicationContext(), specificArrayList);
+                listView.setAdapter(subjectListAdapterTest);
+            }
+        });
+
+        // THU
+        weeks[3].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                specificArrayList.clear();
+                for(int i = 0; i < subjectListArrayList.size(); i++){
+                    if(subjectListArrayList.get(i).getDayOfTheWeek().equals("THU")){
+                        specificArrayList.add(subjectListArrayList.get(i));
+                    }
+                }
+                subjectListAdapterTest = new SubjectListAdapterTest(getApplicationContext(), specificArrayList);
+                listView.setAdapter(subjectListAdapterTest);
+            }
+        });
+
+        // FRI
+        weeks[4].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                specificArrayList.clear();
+                for(int i = 0; i < subjectListArrayList.size(); i++){
+                    if(subjectListArrayList.get(i).getDayOfTheWeek().equals("FRI")){
+                        specificArrayList.add(subjectListArrayList.get(i));
+                    }
+                }
+                subjectListAdapterTest = new SubjectListAdapterTest(getApplicationContext(), specificArrayList);
+                listView.setAdapter(subjectListAdapterTest);
+            }
+        });
     }
 
     public void retrieveData() {
@@ -124,14 +201,25 @@ public class ModifySugang extends AppCompatActivity {
                 intentAddSubject.putExtra("studentNumber", studentNumber);
 
                 // send selected subject information
-                intentAddSubject.putExtra("subjectName", subjectListArrayList.get(position).getSubjectName());
-                intentAddSubject.putExtra("subjectCode", subjectListArrayList.get(position).getSubjectCode());
-                intentAddSubject.putExtra("dayOfTheWeek", subjectListArrayList.get(position).getDayOfTheWeek());
-                intentAddSubject.putExtra("professor", subjectListArrayList.get(position).getProfessor());
-                intentAddSubject.putExtra("startTime", subjectListArrayList.get(position).getStartTime());
-                intentAddSubject.putExtra("entTime", subjectListArrayList.get(position).getEndTime());
-                intentAddSubject.putExtra("bluetoothName", subjectListArrayList.get(position).getBluetoothName());
-                startActivity(intentAddSubject);
+                if(specificArrayList.size() > 0){
+                    intentAddSubject.putExtra("subjectName", specificArrayList.get(position).getSubjectName());
+                    intentAddSubject.putExtra("subjectCode", specificArrayList.get(position).getSubjectCode());
+                    intentAddSubject.putExtra("dayOfTheWeek", specificArrayList.get(position).getDayOfTheWeek());
+                    intentAddSubject.putExtra("professor", specificArrayList.get(position).getProfessor());
+                    intentAddSubject.putExtra("startTime", specificArrayList.get(position).getStartTime());
+                    intentAddSubject.putExtra("entTime", specificArrayList.get(position).getEndTime());
+                    intentAddSubject.putExtra("bluetoothName", specificArrayList.get(position).getBluetoothName());
+                    startActivity(intentAddSubject);
+                } else {
+                    intentAddSubject.putExtra("subjectName", subjectListArrayList.get(position).getSubjectName());
+                    intentAddSubject.putExtra("subjectCode", subjectListArrayList.get(position).getSubjectCode());
+                    intentAddSubject.putExtra("dayOfTheWeek", subjectListArrayList.get(position).getDayOfTheWeek());
+                    intentAddSubject.putExtra("professor", subjectListArrayList.get(position).getProfessor());
+                    intentAddSubject.putExtra("startTime", subjectListArrayList.get(position).getStartTime());
+                    intentAddSubject.putExtra("entTime", subjectListArrayList.get(position).getEndTime());
+                    intentAddSubject.putExtra("bluetoothName", subjectListArrayList.get(position).getBluetoothName());
+                    startActivity(intentAddSubject);
+                }
             }
         });
 

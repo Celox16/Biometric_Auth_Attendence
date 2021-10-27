@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,8 +30,10 @@ import java.util.Map;
 public class AttendanceSearch extends AppCompatActivity {
     private TextView tv_major, tv_stuNum, tv_userName;
     private ListView listView;
+    private Button[] weeks = new Button[5];
     SubjectListAdapterTest subjectListAdapterTest;
     public static ArrayList<SubjectList> subjectListArrayList = new ArrayList<>();
+    public static ArrayList<SubjectList> specificArrayList = new ArrayList<>();
     String url = Variables.address + "getSubjectListFromStudentTable.php";
     SubjectList subjectList;
 
@@ -47,9 +50,17 @@ public class AttendanceSearch extends AppCompatActivity {
         tv_stuNum = findViewById(R.id.tv_attendanceSearch_stuNum);
         tv_userName = findViewById(R.id.tv_attendanceSearch_userName);
 
+        weeks[0] = findViewById(R.id.btn_attendanceSearch_MON);
+        weeks[1] = findViewById(R.id.btn_attendanceSearch_TUE);
+        weeks[2] = findViewById(R.id.btn_attendanceSearch_WED);
+        weeks[3] = findViewById(R.id.btn_attendanceSearch_THU);
+        weeks[4] = findViewById(R.id.btn_attendanceSearch_FRI);
+
         listView = findViewById(R.id.ls_attendanceSearch_subjectList);
         subjectListAdapterTest = new SubjectListAdapterTest(AttendanceSearch.this, subjectListArrayList);
         listView.setAdapter(subjectListAdapterTest);
+
+        specificArrayList.clear();
 
         retrieveData();
 
@@ -64,6 +75,77 @@ public class AttendanceSearch extends AppCompatActivity {
         tv_major.setText(userMajor);
         tv_stuNum.setText(""+studentNumber);
         tv_userName.setText(userName);
+
+        // Week buttons
+        weeks[0].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                specificArrayList.clear();
+                for(int i = 0; i < subjectListArrayList.size(); i++){
+                    if(subjectListArrayList.get(i).getDayOfTheWeek().equals("MON")){
+                        specificArrayList.add(subjectListArrayList.get(i));
+                    }
+                }
+                subjectListAdapterTest = new SubjectListAdapterTest(getApplicationContext(), specificArrayList);
+                listView.setAdapter(subjectListAdapterTest);
+            }
+        });
+
+        weeks[1].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                specificArrayList.clear();
+                for(int i = 0; i < subjectListArrayList.size(); i++){
+                    if(subjectListArrayList.get(i).getDayOfTheWeek().equals("TUE")){
+                        specificArrayList.add(subjectListArrayList.get(i));
+                    }
+                }
+                subjectListAdapterTest = new SubjectListAdapterTest(getApplicationContext(), specificArrayList);
+                listView.setAdapter(subjectListAdapterTest);
+            }
+        });
+
+        weeks[2].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                specificArrayList.clear();
+                for(int i = 0; i < subjectListArrayList.size(); i++){
+                    if(subjectListArrayList.get(i).getDayOfTheWeek().equals("WED")){
+                        specificArrayList.add(subjectListArrayList.get(i));
+                    }
+                }
+                subjectListAdapterTest = new SubjectListAdapterTest(getApplicationContext(), specificArrayList);
+                listView.setAdapter(subjectListAdapterTest);
+            }
+        });
+
+        weeks[3].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                specificArrayList.clear();
+                for(int i = 0; i < subjectListArrayList.size(); i++){
+                    if(subjectListArrayList.get(i).getDayOfTheWeek().equals("THU")){
+                        specificArrayList.add(subjectListArrayList.get(i));
+                    }
+                }
+                subjectListAdapterTest = new SubjectListAdapterTest(getApplicationContext(), specificArrayList);
+                listView.setAdapter(subjectListAdapterTest);
+            }
+        });
+
+        weeks[4].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                specificArrayList.clear();
+                for(int i = 0; i < subjectListArrayList.size(); i++){
+                    if(subjectListArrayList.get(i).getDayOfTheWeek().equals("FRI")){
+                        specificArrayList.add(subjectListArrayList.get(i));
+                    }
+                }
+                subjectListAdapterTest = new SubjectListAdapterTest(getApplicationContext(), specificArrayList);
+                listView.setAdapter(subjectListAdapterTest);
+            }
+        });
     }
 
     public void retrieveData(){
@@ -126,15 +208,27 @@ public class AttendanceSearch extends AppCompatActivity {
                 intentAttendanceResult.putExtra("studentNumber", studentNumber);
 
                 // send selected subject information
-                intentAttendanceResult.putExtra("subjectName", subjectListArrayList.get(position).getSubjectName());
-                intentAttendanceResult.putExtra("subjectCode", subjectListArrayList.get(position).getSubjectCode());
-                intentAttendanceResult.putExtra("dayOfTheWeek", subjectListArrayList.get(position).getDayOfTheWeek());
-                intentAttendanceResult.putExtra("professor", subjectListArrayList.get(position).getProfessor());
-                intentAttendanceResult.putExtra("startTime", subjectListArrayList.get(position).getStartTime());
-                intentAttendanceResult.putExtra("endTime", subjectListArrayList.get(position).getEndTime());
-                intentAttendanceResult.putExtra("bluetoothName", subjectListArrayList.get(position).getBluetoothName());
+                if(specificArrayList.size() > 0){
+                    intentAttendanceResult.putExtra("subjectName", specificArrayList.get(position).getSubjectName());
+                    intentAttendanceResult.putExtra("subjectCode", specificArrayList.get(position).getSubjectCode());
+                    intentAttendanceResult.putExtra("dayOfTheWeek", specificArrayList.get(position).getDayOfTheWeek());
+                    intentAttendanceResult.putExtra("professor", specificArrayList.get(position).getProfessor());
+                    intentAttendanceResult.putExtra("startTime", specificArrayList.get(position).getStartTime());
+                    intentAttendanceResult.putExtra("endTime", specificArrayList.get(position).getEndTime());
+                    intentAttendanceResult.putExtra("bluetoothName", specificArrayList.get(position).getBluetoothName());
 
-                startActivity(intentAttendanceResult);
+                    startActivity(intentAttendanceResult);
+                } else {
+                    intentAttendanceResult.putExtra("subjectName", subjectListArrayList.get(position).getSubjectName());
+                    intentAttendanceResult.putExtra("subjectCode", subjectListArrayList.get(position).getSubjectCode());
+                    intentAttendanceResult.putExtra("dayOfTheWeek", subjectListArrayList.get(position).getDayOfTheWeek());
+                    intentAttendanceResult.putExtra("professor", subjectListArrayList.get(position).getProfessor());
+                    intentAttendanceResult.putExtra("startTime", subjectListArrayList.get(position).getStartTime());
+                    intentAttendanceResult.putExtra("endTime", subjectListArrayList.get(position).getEndTime());
+                    intentAttendanceResult.putExtra("bluetoothName", subjectListArrayList.get(position).getBluetoothName());
+
+                    startActivity(intentAttendanceResult);
+                }
             }
         });
 

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,6 +23,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -29,8 +31,10 @@ import java.util.Map;
 public class AttendanceList extends AppCompatActivity {
     private TextView tv_major, tv_stuNum, tv_userName;
     private ListView listView;
+    private Button[] weeks = new Button[5];
     SubjectListAdapterTest subjectListAdapterTest;
     public static ArrayList<SubjectList> subjectListArrayList = new ArrayList<>();
+    public static ArrayList<SubjectList> specificArrayList = new ArrayList<>();
     String url = Variables.address + "getSubjectListFromStudentTable.php";
     SubjectList subjectList;
 
@@ -47,9 +51,17 @@ public class AttendanceList extends AppCompatActivity {
         tv_stuNum = findViewById(R.id.tv_attendanceList_stuNum);
         tv_userName = findViewById(R.id.tv_attendanceList_userName);
 
+        weeks[0] = findViewById(R.id.btn_attendanceList_MON);
+        weeks[1] = findViewById(R.id.btn_attendanceList_TUE);
+        weeks[2] = findViewById(R.id.btn_attendanceList_WED);
+        weeks[3] = findViewById(R.id.btn_attendanceList_THU);
+        weeks[4] = findViewById(R.id.btn_attendanceList_FRI);
+
         listView = findViewById(R.id.ls_attendanceList_subjectList);
         subjectListAdapterTest = new SubjectListAdapterTest(AttendanceList.this, subjectListArrayList);
         listView.setAdapter(subjectListAdapterTest);
+
+        specificArrayList.clear();
 
         retrieveData();
 
@@ -64,7 +76,81 @@ public class AttendanceList extends AppCompatActivity {
         tv_major.setText(userMajor);
         tv_stuNum.setText("" + studentNumber);
         tv_userName.setText(userName);
+
+
+        // Weeks Buttons
+        weeks[0].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                specificArrayList.clear();
+                for(int i = 0; i < subjectListArrayList.size(); i++){
+                    if(subjectListArrayList.get(i).getDayOfTheWeek().equals("MON")){
+                        specificArrayList.add(subjectListArrayList.get(i));
+                    }
+                }
+                subjectListAdapterTest = new SubjectListAdapterTest(getApplicationContext(), specificArrayList);
+                listView.setAdapter(subjectListAdapterTest);
+            }
+        });
+
+        weeks[1].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                specificArrayList.clear();
+                for(int i = 0; i < subjectListArrayList.size(); i++){
+                    if(subjectListArrayList.get(i).getDayOfTheWeek().equals("TUE")){
+                        specificArrayList.add(subjectListArrayList.get(i));
+                    }
+                }
+                subjectListAdapterTest = new SubjectListAdapterTest(getApplicationContext(), specificArrayList);
+                listView.setAdapter(subjectListAdapterTest);
+            }
+        });
+
+        weeks[2].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                specificArrayList.clear();
+                for(int i = 0; i < subjectListArrayList.size(); i++){
+                    if(subjectListArrayList.get(i).getDayOfTheWeek().equals("WED")){
+                        specificArrayList.add(subjectListArrayList.get(i));
+                    }
+                }
+                subjectListAdapterTest = new SubjectListAdapterTest(getApplicationContext(), specificArrayList);
+                listView.setAdapter(subjectListAdapterTest);
+            }
+        });
+
+        weeks[3].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                specificArrayList.clear();
+                for(int i = 0; i < subjectListArrayList.size(); i++){
+                    if(subjectListArrayList.get(i).getDayOfTheWeek().equals("THU")){
+                        specificArrayList.add(subjectListArrayList.get(i));
+                    }
+                }
+                subjectListAdapterTest = new SubjectListAdapterTest(getApplicationContext(), specificArrayList);
+                listView.setAdapter(subjectListAdapterTest);
+            }
+        });
+
+        weeks[4].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                specificArrayList.clear();
+                for(int i = 0; i < subjectListArrayList.size(); i++){
+                    if(subjectListArrayList.get(i).getDayOfTheWeek().equals("FRI")){
+                        specificArrayList.add(subjectListArrayList.get(i));
+                    }
+                }
+                subjectListAdapterTest = new SubjectListAdapterTest(getApplicationContext(), specificArrayList);
+                listView.setAdapter(subjectListAdapterTest);
+            }
+        });
     }
+
+
 
     public void retrieveData() {
         StringRequest request = new StringRequest(Request.Method.POST, url,
@@ -114,7 +200,6 @@ public class AttendanceList extends AppCompatActivity {
             }
         };
 
-
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
@@ -127,15 +212,27 @@ public class AttendanceList extends AppCompatActivity {
                 intentAttendanceCheck.putExtra("studentNumber", studentNumber);
 
                 // send selected subject information
-                intentAttendanceCheck.putExtra("subjectName", subjectListArrayList.get(position).getSubjectName());
-                intentAttendanceCheck.putExtra("subjectCode", subjectListArrayList.get(position).getSubjectCode());
-                intentAttendanceCheck.putExtra("dayOfTheWeek", subjectListArrayList.get(position).getDayOfTheWeek());
-                intentAttendanceCheck.putExtra("professor", subjectListArrayList.get(position).getProfessor());
-                intentAttendanceCheck.putExtra("startTime", subjectListArrayList.get(position).getStartTime());
-                intentAttendanceCheck.putExtra("endTime", subjectListArrayList.get(position).getEndTime());
-                intentAttendanceCheck.putExtra("bluetoothName", subjectListArrayList.get(position).getBluetoothName());
+                if(specificArrayList.size() > 0){
+                    intentAttendanceCheck.putExtra("subjectName", specificArrayList.get(position).getSubjectName());
+                    intentAttendanceCheck.putExtra("subjectCode", specificArrayList.get(position).getSubjectCode());
+                    intentAttendanceCheck.putExtra("dayOfTheWeek", specificArrayList.get(position).getDayOfTheWeek());
+                    intentAttendanceCheck.putExtra("professor", specificArrayList.get(position).getProfessor());
+                    intentAttendanceCheck.putExtra("startTime", specificArrayList.get(position).getStartTime());
+                    intentAttendanceCheck.putExtra("endTime", specificArrayList.get(position).getEndTime());
+                    intentAttendanceCheck.putExtra("bluetoothName", specificArrayList.get(position).getBluetoothName());
 
-                startActivity(intentAttendanceCheck);
+                    startActivity(intentAttendanceCheck);
+                } else {
+                    intentAttendanceCheck.putExtra("subjectName", subjectListArrayList.get(position).getSubjectName());
+                    intentAttendanceCheck.putExtra("subjectCode", subjectListArrayList.get(position).getSubjectCode());
+                    intentAttendanceCheck.putExtra("dayOfTheWeek", subjectListArrayList.get(position).getDayOfTheWeek());
+                    intentAttendanceCheck.putExtra("professor", subjectListArrayList.get(position).getProfessor());
+                    intentAttendanceCheck.putExtra("startTime", subjectListArrayList.get(position).getStartTime());
+                    intentAttendanceCheck.putExtra("endTime", subjectListArrayList.get(position).getEndTime());
+                    intentAttendanceCheck.putExtra("bluetoothName", subjectListArrayList.get(position).getBluetoothName());
+
+                    startActivity(intentAttendanceCheck);
+                }
             }
         });
 
