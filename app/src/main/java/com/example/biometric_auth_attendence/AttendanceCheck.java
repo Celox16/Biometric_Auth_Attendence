@@ -128,8 +128,8 @@ public class AttendanceCheck extends AppCompatActivity {
         });
 
         promptInfo = new BiometricPrompt.PromptInfo.Builder()
-                .setTitle("Biometric Authentication")
-                .setSubtitle("Attendance check using fingerprint or face")
+                .setTitle("생체인증 출석체크")
+                .setSubtitle("생체인증을 하여 출석체크를 진행해주세요.")
                 .setNegativeButtonText("Cancel")
                 .build();
 
