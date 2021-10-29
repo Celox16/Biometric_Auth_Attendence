@@ -2,6 +2,7 @@ package com.example.biometric_auth_attendence;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
@@ -97,15 +98,15 @@ public class UserInfoModify extends AppCompatActivity {
         });
 
         btn_save.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View view) {
                 ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
                 byte[] imageBytes = byteArrayOutputStream.toByteArray();
-                String imageString = new String(imageBytes, Base64.DEFAULT);
+                //String imageString = new String(imageBytes, Base64.DEFAULT);
+                String imageString = java.util.Base64.getEncoder().encodeToString(imageBytes);
                 int length = imageString.length();
-
-                Log.d("test", imageString);
 
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
                     @Override
@@ -160,6 +161,7 @@ public class UserInfoModify extends AppCompatActivity {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -168,6 +170,16 @@ public class UserInfoModify extends AppCompatActivity {
                 InputStream inputStream = getContentResolver().openInputStream(data.getData());
                 bitmap = BitmapFactory.decodeStream(inputStream);
                 imageView.setImageBitmap(bitmap);
+
+//                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+//                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+//                byte[] imageBytes = byteArrayOutputStream.toByteArray();
+//                //String imageString = new String(imageBytes, Base64.DEFAULT);
+//                String imageString = java.util.Base64.getEncoder().encodeToString(imageBytes);
+//
+//                byte[] convertBytes = java.util.Base64.getDecoder().decode(imageString);
+//                Bitmap testBitmap = BitmapFactory.decodeByteArray(convertBytes, 0, convertBytes.length);
+//                imageView.setImageBitmap(testBitmap);
 
             } catch (FileNotFoundException e){
                 e.printStackTrace();
