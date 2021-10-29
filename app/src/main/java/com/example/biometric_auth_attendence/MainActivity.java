@@ -109,7 +109,6 @@ public class MainActivity extends AppCompatActivity {
                 intentUserInfoModify.putExtra("studentNumber", studentNumber);
 
                 startActivity(intentUserInfoModify);
-                finish();
             }
         });
 
