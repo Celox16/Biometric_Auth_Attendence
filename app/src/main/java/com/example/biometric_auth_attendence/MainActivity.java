@@ -1,12 +1,18 @@
 package com.example.biometric_auth_attendence;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     // view variables
     private TextView tv_major, tv_stuNum, tv_userName;
     private Button btn_attendance, btn_check, btn_userInfoModify, btn_sugangInfoModify;
+    private ImageView imageView;
 
     // on back pressed variables
     private long backKeyPressedTime = 0;
@@ -40,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +63,8 @@ public class MainActivity extends AppCompatActivity {
         btn_userInfoModify = findViewById(R.id.btn_main_userInfoModify);
         btn_sugangInfoModify = findViewById(R.id.btn_main_sugangInfoModify);
 
+        imageView = findViewById(R.id.main_image);
+
         // get user info
         Intent intent = getIntent();
         String userID = intent.getStringExtra("userID");
@@ -62,6 +72,8 @@ public class MainActivity extends AppCompatActivity {
         String userMajor = intent.getStringExtra("userMajor");
         String userName = intent.getStringExtra("userName");
         int studentNumber = intent.getIntExtra("studentNumber", 0);
+        // get user image
+        String imageString = intent.getStringExtra("imageString");
 
         // set textview on the tab
         tv_userName.setText(userName);

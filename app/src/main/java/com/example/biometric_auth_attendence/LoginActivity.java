@@ -21,6 +21,8 @@ public class LoginActivity extends AppCompatActivity {
     private EditText et_id, et_password;
     private Button btn_login, btn_register;
 
+    String imageString;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +51,35 @@ public class LoginActivity extends AppCompatActivity {
                 String userID = et_id.getText().toString();
                 String userPassword = et_password.getText().toString();
 
+                /*
+                //////////////image///////////////
+                Response.Listener<String> responseImage = new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try{
+                            JSONObject jsonObject = new JSONObject(response);
+
+                            boolean success = jsonObject.getBoolean("success");
+
+                            if(success){
+                                imageString = jsonObject.getString("image");
+                            } else {
+                                return;
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                };
+
+
+                LoginImageRequest loginImageRequest = new LoginImageRequest(userID, responseImage);
+                RequestQueue imageQueue = Volley.newRequestQueue(LoginActivity.this);
+                imageQueue.add(loginImageRequest);
+
+                /////////////////////////////////
+                */
+
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -74,6 +105,9 @@ public class LoginActivity extends AppCompatActivity {
                                 intent.putExtra("userMajor", userMajor);
                                 intent.putExtra("userName", userName);
                                 intent.putExtra("studentNumber", studentNumber);
+
+                                // send main image
+                                intent.putExtra("imageString", imageString);
 
                                 startActivity(intent);
                                 finish();
