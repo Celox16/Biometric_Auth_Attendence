@@ -130,7 +130,7 @@ public class AttendanceCheck extends AppCompatActivity {
         promptInfo = new BiometricPrompt.PromptInfo.Builder()
                 .setTitle("생체인증 출석체크")
                 .setSubtitle("생체인증을 하여 출석체크를 진행해주세요.")
-                .setNegativeButtonText("Cancel")
+                .setNegativeButtonText("취소")
                 .build();
 
         // button click listener
@@ -155,11 +155,11 @@ public class AttendanceCheck extends AppCompatActivity {
                         btn_goBack.setVisibility(View.VISIBLE);
                     }
                     else{
-                        Toast.makeText(getApplicationContext(), "Connect to right bluetooth device", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "강의실에 올바른 블루투스 기기에 연결해주세요.", Toast.LENGTH_SHORT).show();
                     }
                 }
                 else{
-                    Toast.makeText(getApplicationContext(), "Turn on bluetooth to get paired devices", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "블루투스를 켜서 페어링을 해주세요.", Toast.LENGTH_SHORT).show();
                 }
             }
         });

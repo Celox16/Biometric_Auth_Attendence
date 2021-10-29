@@ -3,13 +3,25 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/park/AndroidStudioProjects/Biometric_Auth_Attendence/app/src/main/res/drawable/ic_baseline_aspect_ratio_24.xml" value="0.35625" />
+        <entry key="..\:/Users/park/AndroidStudioProjects/Biometric_Auth_Attendence/app/src/main/res/drawable/ic_baseline_bluetooth_24.xml" value="0.35625" />
+        <entry key="..\:/Users/park/AndroidStudioProjects/Biometric_Auth_Attendence/app/src/main/res/drawable/ic_baseline_card_membership_24.xml" value="0.35625" />
+        <entry key="..\:/Users/park/AndroidStudioProjects/Biometric_Auth_Attendence/app/src/main/res/drawable/ic_baseline_fingerprint_24.xml" value="0.35625" />
+        <entry key="..\:/Users/park/AndroidStudioProjects/Biometric_Auth_Attendence/app/src/main/res/drawable/ic_baseline_lock_24.xml" value="0.35625" />
+        <entry key="..\:/Users/park/AndroidStudioProjects/Biometric_Auth_Attendence/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.35625" />
+        <entry key="..\:/Users/park/AndroidStudioProjects/Biometric_Auth_Attendence/app/src/main/res/layout/activity_add_subject.xml" value="0.33" />
+        <entry key="..\:/Users/park/AndroidStudioProjects/Biometric_Auth_Attendence/app/src/main/res/layout/activity_attendance_check.xml" value="0.25" />
         <entry key="..\:/Users/park/AndroidStudioProjects/Biometric_Auth_Attendence/app/src/main/res/layout/activity_attendance_list.xml" value="0.33" />
+        <entry key="..\:/Users/park/AndroidStudioProjects/Biometric_Auth_Attendence/app/src/main/res/layout/activity_attendance_result.xml" value="0.33" />
+        <entry key="..\:/Users/park/AndroidStudioProjects/Biometric_Auth_Attendence/app/src/main/res/layout/activity_attendance_search.xml" value="0.3359375" />
         <entry key="..\:/Users/park/AndroidStudioProjects/Biometric_Auth_Attendence/app/src/main/res/layout/activity_login.xml" value="0.3359375" />
         <entry key="..\:/Users/park/AndroidStudioProjects/Biometric_Auth_Attendence/app/src/main/res/layout/activity_main.xml" value="0.32472826086956524" />
         <entry key="..\:/Users/park/AndroidStudioProjects/Biometric_Auth_Attendence/app/src/main/res/layout/activity_modify_sugang.xml" value="0.32472826086956524" />
         <entry key="..\:/Users/park/AndroidStudioProjects/Biometric_Auth_Attendence/app/src/main/res/layout/activity_register.xml" value="0.3359375" />
         <entry key="..\:/Users/park/AndroidStudioProjects/Biometric_Auth_Attendence/app/src/main/res/layout/activity_user_info_modify.xml" value="0.33" />
+        <entry key="..\:/Users/park/AndroidStudioProjects/Biometric_Auth_Attendence/app/src/main/res/layout/attendance_list_item.xml" value="0.18931159420289856" />
         <entry key="..\:/Users/park/AndroidStudioProjects/Biometric_Auth_Attendence/app/src/main/res/layout/listview_modify_sugang_subject_list.xml" value="0.3079710144927536" />
+        <entry key="..\:/Users/park/AndroidStudioProjects/Biometric_Auth_Attendence/app/src/main/res/layout/subject_list_item.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_add_subject.xml" value="0.19202898550724637" />
         <entry key="app/src/main/res/layout/activity_attendance_check.xml" value="0.18704710144927536" />
         <entry key="app/src/main/res/layout/activity_attendance_list.xml" value="0.19202898550724637" />

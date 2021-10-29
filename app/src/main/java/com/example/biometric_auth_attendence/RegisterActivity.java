@@ -73,6 +73,11 @@ public class RegisterActivity extends AppCompatActivity {
                 RegisterCreateTable registerCreateTable = new RegisterCreateTable(userID, responseListener);
                 RequestQueue queue1 = Volley.newRequestQueue(RegisterActivity.this);
                 queue1.add(registerCreateTable);
+
+                // request server (create image table)
+                RegisterImageTable registerImageTable = new RegisterImageTable(userID, responseListener);
+                RequestQueue queue2 = Volley.newRequestQueue(RegisterActivity.this);
+                queue2.add(registerImageTable);
             }
         });
     }
