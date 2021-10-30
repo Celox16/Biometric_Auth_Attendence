@@ -53,6 +53,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 /*
                 //////////////image///////////////
+                // TODO : delete code
                 Response.Listener<String> responseImage = new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {

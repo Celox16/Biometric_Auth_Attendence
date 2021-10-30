@@ -16,6 +16,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -112,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
         btn_userInfoModify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 //a new intent and parse user info data
                 Intent intentUserInfoModify = new Intent(getApplicationContext(), UserInfoModify.class);
                 intentUserInfoModify.putExtra("userID", userID);
@@ -120,7 +128,40 @@ public class MainActivity extends AppCompatActivity {
                 intentUserInfoModify.putExtra("userMajor", userMajor);
                 intentUserInfoModify.putExtra("studentNumber", studentNumber);
 
+                //intentUserInfoModify.putExtra("image", image);
+
                 startActivity(intentUserInfoModify);
+
+                /////////////////////////////////////
+                /*
+                // get image form database
+                Response.Listener<String> responseListener = new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try{
+                            JSONObject jsonObject = new JSONObject(response);
+
+                            boolean success = jsonObject.getBoolean("success");
+
+                            if(success) {
+                                // get image format form database
+                                String image = jsonObject.getString("image");
+
+
+
+
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                };
+                ModifyImageRequest modifyImageRequest = new ModifyImageRequest(userID, responseListener);
+                RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
+                queue.add(modifyImageRequest);
+                 */
+
+                //////////////////////////////////////
             }
         });
 

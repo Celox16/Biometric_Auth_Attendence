@@ -10,63 +10,110 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="90sp"
+        android:layout_marginTop="45sp"
         android:layout_marginBottom="50sp"
         android:text="Register"
         android:textSize="30sp"
         android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/et_register_ID"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30sp"
-        android:layout_marginRight="30sp"
-        android:layout_marginBottom="10sp"
-        android:drawableRight="@drawable/ic_baseline_person_24"
-        android:hint="ID" />
+        android:layout_height="340dp"
+        android:fillViewport="true">
 
-    <EditText
-        android:id="@+id/et_register_password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30sp"
-        android:layout_marginRight="30sp"
-        android:layout_marginBottom="10sp"
-        android:drawableRight="@drawable/ic_baseline_lock_24"
-        android:inputType="textPassword"
-        android:hint="PASSWORD" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/et_register_studentNumber"
-        android:inputType="number"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30sp"
-        android:layout_marginRight="30sp"
-        android:layout_marginBottom="10sp"
-        android:drawableRight="@drawable/ic_baseline_card_membership_24"
-        android:hint="STUDENT NUMBER" />
+            <EditText
+                android:id="@+id/et_register_ID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30sp"
+                android:layout_marginRight="30sp"
+                android:layout_marginBottom="10sp"
+                android:drawableRight="@drawable/ic_baseline_person_24"
+                android:hint="ID" />
 
-    <EditText
-        android:id="@+id/et_register_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:drawableRight="@drawable/ic_name"
-        android:layout_marginLeft="30sp"
-        android:layout_marginRight="30sp"
-        android:layout_marginBottom="15sp"
-        android:hint="NAME" />
+            <EditText
+                android:id="@+id/et_register_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30sp"
+                android:layout_marginRight="30sp"
+                android:layout_marginBottom="10sp"
+                android:drawableRight="@drawable/ic_baseline_lock_24"
+                android:inputType="textPassword"
+                android:hint="PASSWORD" />
 
-    <EditText
-        android:id="@+id/et_register_major"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:drawableRight="@drawable/ic_baseline_aspect_ratio_24"
-        android:layout_marginLeft="30sp"
-        android:layout_marginRight="30sp"
-        android:layout_marginBottom="15sp"
-        android:hint="MAJOR" />
+            <EditText
+                android:id="@+id/et_register_password2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30sp"
+                android:layout_marginRight="30sp"
+                android:layout_marginBottom="10sp"
+                android:drawableRight="@drawable/ic_baseline_lock_24"
+                android:inputType="textPassword"
+                android:hint="PASSWORD CHECK" />
+
+            <EditText
+                android:id="@+id/et_register_studentNumber"
+                android:inputType="number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30sp"
+                android:layout_marginRight="30sp"
+                android:layout_marginBottom="10sp"
+                android:drawableRight="@drawable/ic_baseline_card_membership_24"
+                android:hint="STUDENT NUMBER" />
+
+            <EditText
+                android:id="@+id/et_register_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableRight="@drawable/ic_name"
+                android:layout_marginLeft="30sp"
+                android:layout_marginRight="30sp"
+                android:layout_marginBottom="15sp"
+                android:hint="NAME" />
+
+            <EditText
+                android:id="@+id/et_register_major"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableRight="@drawable/ic_baseline_aspect_ratio_24"
+                android:layout_marginLeft="30sp"
+                android:layout_marginRight="30sp"
+                android:layout_marginBottom="15sp"
+                android:hint="MAJOR" />
+
+            <EditText
+                android:id="@+id/et_register_status"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableRight="@drawable/ic_baseline_aspect_ratio_24"
+                android:layout_marginLeft="30sp"
+                android:layout_marginRight="30sp"
+                android:layout_marginBottom="15sp"
+                android:hint="STATUS" />
+
+            <EditText
+                android:id="@+id/et_register_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableRight="@drawable/ic_baseline_aspect_ratio_24"
+                android:layout_marginLeft="30sp"
+                android:layout_marginRight="30sp"
+                android:layout_marginBottom="15sp"
+                android:hint="ADDRESS" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
 
     <Button
         android:layout_width="wrap_content"

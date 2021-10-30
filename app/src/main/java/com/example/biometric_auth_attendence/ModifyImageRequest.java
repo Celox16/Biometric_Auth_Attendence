@@ -7,12 +7,12 @@ import com.android.volley.toolbox.StringRequest;
 import java.util.HashMap;
 import java.util.Map;
 
-public class LoginImageRequest extends StringRequest {
+public class ModifyImageRequest extends StringRequest {
     // set server URL (connect to php file)
     final static private String URL = Variables.address + "mainImage.php";
     private Map<String, String> map;
 
-    public LoginImageRequest(String userID, Response.Listener<String> listener) {
+    public ModifyImageRequest(String userID, Response.Listener<String> listener) {
         super(Method.POST, URL, listener, null);
 
         map = new HashMap<>();

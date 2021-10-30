@@ -17,7 +17,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class RegisterActivity extends AppCompatActivity {
-    private EditText et_id, et_password, et_name, et_studentNumber, et_major;
+    private EditText et_id, et_password, et_name, et_studentNumber, et_major,
+            et_passwordCheck, et_status, et_address;
     private Button btn_register;
 
     @Override
@@ -31,6 +32,10 @@ public class RegisterActivity extends AppCompatActivity {
         et_name = findViewById(R.id.et_register_name);
         et_studentNumber = findViewById(R.id.et_register_studentNumber);
         et_major = findViewById(R.id.et_register_major);
+        et_passwordCheck = findViewById(R.id.et_register_password2);
+        et_address = findViewById(R.id.et_register_address);
+        et_status = findViewById(R.id.et_register_status);
+
         btn_register = findViewById(R.id.btn_register_register);
 
         btn_register.setOnClickListener(new View.OnClickListener() {
@@ -42,6 +47,10 @@ public class RegisterActivity extends AppCompatActivity {
                 String userName = et_name.getText().toString();
                 String userMajor = et_major.getText().toString();
                 int studentNumber = Integer.parseInt(et_studentNumber.getText().toString());
+                String userPasswordCheck = et_passwordCheck.getText().toString();
+                String userAddress = et_address.getText().toString();
+                String userStatus = et_status.getText().toString();
+
 
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
                     @Override

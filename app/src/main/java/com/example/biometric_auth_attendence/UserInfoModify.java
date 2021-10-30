@@ -31,6 +31,11 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class UserInfoModify extends AppCompatActivity {
     private TextView tv_major, tv_stuNum, tv_userName;
@@ -47,6 +52,7 @@ public class UserInfoModify extends AppCompatActivity {
     // image variables
     Bitmap bitmap;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,6 +75,12 @@ public class UserInfoModify extends AppCompatActivity {
         userName = intent.getStringExtra("userName");
         userMajor = intent.getStringExtra("userMajor");
         studentNumber = intent.getIntExtra("studentNumber", 0);
+
+        // get image string and set imageview
+        //String image = intent.getStringExtra("image");
+        //byte[] convertBytes = java.util.Base64.getDecoder().decode(image);
+        //Bitmap bitmap = BitmapFactory.decodeByteArray(convertBytes, 0, convertBytes.length);
+        //imageView.setImageBitmap(bitmap);
 
         // set textview on the tab
         tv_major.setText(userMajor);
