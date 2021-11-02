@@ -51,36 +51,6 @@ public class LoginActivity extends AppCompatActivity {
                 String userID = et_id.getText().toString();
                 String userPassword = et_password.getText().toString();
 
-                /*
-                //////////////image///////////////
-                // TODO : delete code
-                Response.Listener<String> responseImage = new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try{
-                            JSONObject jsonObject = new JSONObject(response);
-
-                            boolean success = jsonObject.getBoolean("success");
-
-                            if(success){
-                                imageString = jsonObject.getString("image");
-                            } else {
-                                return;
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                };
-
-
-                LoginImageRequest loginImageRequest = new LoginImageRequest(userID, responseImage);
-                RequestQueue imageQueue = Volley.newRequestQueue(LoginActivity.this);
-                imageQueue.add(loginImageRequest);
-
-                /////////////////////////////////
-                */
-
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {

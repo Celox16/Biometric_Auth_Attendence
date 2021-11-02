@@ -18,7 +18,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class AddSubject extends AppCompatActivity {
-    private TextView tv_major, tv_stuNum, tv_userName, tv_subjectName, tv_subjectCode, tv_dayOfTheWeek;
+    private TextView tv_major, tv_stuNum, tv_userName, tv_subjectName;
     private Button btn_addSubject, btn_goBack;
 
     @Override
@@ -31,9 +31,6 @@ public class AddSubject extends AppCompatActivity {
         tv_stuNum = findViewById(R.id.tv_addSubject_stuNum);
         tv_userName = findViewById(R.id.tv_addSubject_userName);
         tv_subjectName = findViewById(R.id.tv_addSubject_subjectName);
-
-        tv_subjectCode = findViewById(R.id.tv_addSubject_subjectCode);
-        tv_dayOfTheWeek = findViewById(R.id.tv_addSubject_dayOfTheWeek);
 
         // fin button values
         btn_addSubject = findViewById(R.id.btn_addSubject_addSubject);
@@ -60,9 +57,6 @@ public class AddSubject extends AppCompatActivity {
         tv_major.setText(userMajor);
         tv_stuNum.setText("" + studentNumber);
         tv_subjectName.setText(subjectName);
-
-        tv_subjectCode.setText(""+subjectCode);
-        tv_dayOfTheWeek.setText(dayOfTheWeek);
 
         btn_addSubject.setOnClickListener(new View.OnClickListener() {
             @Override

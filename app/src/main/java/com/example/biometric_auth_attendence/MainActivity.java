@@ -70,8 +70,6 @@ public class MainActivity extends AppCompatActivity {
         btn_userInfoModify = findViewById(R.id.btn_main_userInfoModify);
         btn_sugangInfoModify = findViewById(R.id.btn_main_sugangInfoModify);
 
-        imageView = findViewById(R.id.main_image);
-
         // get user info
         Intent intent = getIntent();
         String userID = intent.getStringExtra("userID");
@@ -128,40 +126,7 @@ public class MainActivity extends AppCompatActivity {
                 intentUserInfoModify.putExtra("userMajor", userMajor);
                 intentUserInfoModify.putExtra("studentNumber", studentNumber);
 
-                //intentUserInfoModify.putExtra("image", image);
-
                 startActivity(intentUserInfoModify);
-
-                /////////////////////////////////////
-                /*
-                // get image form database
-                Response.Listener<String> responseListener = new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try{
-                            JSONObject jsonObject = new JSONObject(response);
-
-                            boolean success = jsonObject.getBoolean("success");
-
-                            if(success) {
-                                // get image format form database
-                                String image = jsonObject.getString("image");
-
-
-
-
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                };
-                ModifyImageRequest modifyImageRequest = new ModifyImageRequest(userID, responseListener);
-                RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
-                queue.add(modifyImageRequest);
-                 */
-
-                //////////////////////////////////////
             }
         });
 

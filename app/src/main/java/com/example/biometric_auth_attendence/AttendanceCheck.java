@@ -34,8 +34,8 @@ import java.util.concurrent.Executor;
 
 public class AttendanceCheck extends AppCompatActivity {
     // layout variables
-    private TextView tv_major, tv_stuNum, tv_userName, tv_subjectName, tv_annotation;
-    private Button btn_attendanceCheck, btn_goBack, btn_bluetooth, btn_fingerprint;
+    private TextView tv_major, tv_stuNum, tv_userName, tv_subjectName;
+    private Button btn_attendanceCheck, btn_bluetooth, btn_fingerprint;
 
     // biometric variables
     private Executor executor;
@@ -64,13 +64,11 @@ public class AttendanceCheck extends AppCompatActivity {
         tv_major = findViewById(R.id.tv_attendanceCheck_major);
         tv_stuNum = findViewById(R.id.tv_attendanceCheck_stuNum);
         tv_userName = findViewById(R.id.tv_attendanceCheck_userName);
-        tv_annotation = findViewById(R.id.tv_attendanceCheck_annotation);
 
         tv_subjectName = findViewById(R.id.tv_attendanceCheck_subjectName);
 
         // find button values
         btn_attendanceCheck = findViewById(R.id.btn_attendanceCheck_attendanceCheck);
-        btn_goBack = findViewById(R.id.btn_attendanceCheck_goBack);
         btn_bluetooth = findViewById(R.id.btn_attendanceCheck_bluetooth);
         btn_fingerprint = findViewById(R.id.btn_attendanceCheck_fingerprint);
 
@@ -103,26 +101,22 @@ public class AttendanceCheck extends AppCompatActivity {
             @Override
             public void onAuthenticationError(int errorCode, @NonNull CharSequence errString) {
                 super.onAuthenticationError(errorCode, errString);
-                tv_annotation.setText("Authentication error : " + errString);
                 Toast.makeText(AttendanceCheck.this, "Authentication error : " + errString, Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
                 super.onAuthenticationSucceeded(result);
-                tv_annotation.setText("Authentication succeeded");
                 Toast.makeText(AttendanceCheck.this, "Authentication succeeded", Toast.LENGTH_SHORT).show();
                 biometricJudgement = true;
                 if(bluetoothJudgement && biometricJudgement) {
                     btn_attendanceCheck.setVisibility(View.VISIBLE);
-                    btn_goBack.setVisibility(View.VISIBLE);
                 }
             }
 
             @Override
             public void onAuthenticationFailed() {
                 super.onAuthenticationFailed();
-                tv_annotation.setText("Authentication Failed");
                 Toast.makeText(AttendanceCheck.this, "Authentication Failed", Toast.LENGTH_SHORT).show();
             }
         });
@@ -152,7 +146,6 @@ public class AttendanceCheck extends AppCompatActivity {
                     }
                     if(bluetoothJudgement && biometricJudgement){
                         btn_attendanceCheck.setVisibility(View.VISIBLE);
-                        btn_goBack.setVisibility(View.VISIBLE);
                     }
                     else{
                         Toast.makeText(getApplicationContext(), "강의실에 올바른 블루투스 기기에 연결해주세요.", Toast.LENGTH_SHORT).show();
@@ -244,13 +237,6 @@ public class AttendanceCheck extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "수업이 끝났습니다.", Toast.LENGTH_SHORT).show();
                 }
 
-                finish();
-            }
-        });
-
-        btn_goBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
                 finish();
             }
         });

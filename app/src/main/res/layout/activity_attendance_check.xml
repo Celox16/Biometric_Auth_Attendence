@@ -5,14 +5,13 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="12"
+    android:background="@drawable/attendance_check_refactor"
     tools:context=".AttendanceCheck">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="#8BC34A"
+        android:layout_height="60dp"
+        android:background="#006784"
         android:orientation="horizontal">
 
         <TextView
@@ -22,7 +21,7 @@
             android:layout_gravity="center"
             android:padding="5dp"
             android:text="major"
-            android:textColor="@color/black" />
+            android:textColor="@color/white" />
 
         <View
             android:layout_width="0dp"
@@ -36,7 +35,7 @@
             android:layout_gravity="center"
             android:padding="5dp"
             android:text="stuNum"
-            android:textColor="@color/black" />
+            android:textColor="@color/white" />
 
         <TextView
             android:id="@+id/tv_attendanceCheck_userName"
@@ -45,7 +44,7 @@
             android:layout_gravity="center"
             android:padding="5dp"
             android:text="userName"
-            android:textColor="@color/black" />
+            android:textColor="@color/white" />
 
     </LinearLayout>
 
@@ -53,75 +52,36 @@
         android:id="@+id/tv_attendanceCheck_subjectName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_weight="4"
-        android:gravity="center"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="150dp"
         android:text="subjectName"
-        android:textColor="@color/black"
+        android:textColor="#FFFFFF"
         android:textSize="30dp" />
 
-    <TextView
-        android:id="@+id/tv_attendanceCheck_annotation"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_gravity="center"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:text="블루투스 연결과, 지문인증을 해주세요." />
+    <Button
+        android:id="@+id/btn_attendanceCheck_fingerprint"
+        android:layout_width="160dp"
+        android:layout_height="180dp"
+        android:layout_gravity="center_horizontal"
+        android:background="#00ff0000"
+        android:layout_marginTop="65dp"
+        android:padding="5dp" />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_weight="4"
-        android:layout_gravity="center"
-        android:orientation="horizontal">
+    <Button
+        android:id="@+id/btn_attendanceCheck_bluetooth"
+        android:layout_marginTop="60dp"
+        android:background="#00ff0000"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        />
 
-        <Button
-            android:id="@+id/btn_attendanceCheck_bluetooth"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/ic_baseline_bluetooth_24"
-            android:padding="5dp"
-            android:layout_margin="15dp"/>
+    <Button
+        android:visibility="invisible"
+        android:id="@+id/btn_attendanceCheck_attendanceCheck"
+        android:layout_width="match_parent"
+        android:background="#00ff0000"
+        android:layout_height="60dp"
+        android:layout_marginTop="15dp" />
 
-        <Button
-            android:id="@+id/btn_attendanceCheck_fingerprint"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/ic_baseline_fingerprint_24"
-            android:padding="5dp"
-            android:layout_margin="15dp"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/layout_attendanceCheck_buttons"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_gravity="center"
-        android:layout_weight="1"
-        android:orientation="horizontal">
-
-        <Button
-            android:visibility="invisible"
-            android:id="@+id/btn_attendanceCheck_attendanceCheck"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="5dp"
-            android:padding="5dp"
-            android:text="출석" />
-
-        <Button
-            android:visibility="invisible"
-            android:id="@+id/btn_attendanceCheck_goBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="5dp"
-            android:padding="5dp"
-            android:text="뒤로가기" />
-
-    </LinearLayout>
 
 </LinearLayout>

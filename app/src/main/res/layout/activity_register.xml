@@ -4,21 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/register_refactor"
     tools:context=".RegisterActivity">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="45sp"
-        android:layout_marginBottom="50sp"
-        android:text="Register"
-        android:textSize="30sp"
-        android:textStyle="bold" />
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="340dp"
+        android:layout_marginTop="270dp"
+        android:layout_height="300dp"
         android:fillViewport="true">
 
         <LinearLayout
@@ -113,13 +105,12 @@
 
     </ScrollView>
 
-
-
     <Button
-        android:layout_width="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="register"
+        android:background="#00ff0000"
         android:id="@+id/btn_register_register"/>
 
 </LinearLayout>
