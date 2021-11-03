@@ -13,6 +13,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +37,7 @@ public class AttendanceCheck extends AppCompatActivity {
     // layout variables
     private TextView tv_major, tv_stuNum, tv_userName, tv_subjectName;
     private Button btn_attendanceCheck, btn_bluetooth, btn_fingerprint;
+    private LinearLayout attendanceCheck;
 
     // biometric variables
     private Executor executor;
@@ -71,6 +73,9 @@ public class AttendanceCheck extends AppCompatActivity {
         btn_attendanceCheck = findViewById(R.id.btn_attendanceCheck_attendanceCheck);
         btn_bluetooth = findViewById(R.id.btn_attendanceCheck_bluetooth);
         btn_fingerprint = findViewById(R.id.btn_attendanceCheck_fingerprint);
+
+        // find layout
+        attendanceCheck = findViewById(R.id.attendance_check);
 
         // get user information
         Intent intent = getIntent();
@@ -145,6 +150,7 @@ public class AttendanceCheck extends AppCompatActivity {
                         }
                     }
                     if(bluetoothJudgement && biometricJudgement){
+
                         btn_attendanceCheck.setVisibility(View.VISIBLE);
                     }
                     else{
@@ -162,6 +168,10 @@ public class AttendanceCheck extends AppCompatActivity {
             public void onClick(View view) {
                 // try to biometric authentication in AttendanceCheck.java
                 biometricPrompt.authenticate(promptInfo);
+                if(bluetoothJudgement && biometricJudgement){
+
+                    btn_attendanceCheck.setVisibility(View.VISIBLE);
+                }
             }
         });
 

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -32,7 +33,7 @@ import java.net.URL;
 public class MainActivity extends AppCompatActivity {
     // view variables
     private TextView tv_major, tv_stuNum, tv_userName;
-    private Button btn_attendance, btn_check, btn_userInfoModify, btn_sugangInfoModify;
+    private Button btn_attendance, btn_check, btn_userInfoModify, btn_sugangInfoModify, btn_portal;
     private ImageView imageView;
 
     // on back pressed variables
@@ -69,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
         btn_check = findViewById(R.id.btn_main_check);
         btn_userInfoModify = findViewById(R.id.btn_main_userInfoModify);
         btn_sugangInfoModify = findViewById(R.id.btn_main_sugangInfoModify);
+        btn_portal = findViewById(R.id.btn_main_goPortal);
 
         // get user info
         Intent intent = getIntent();
@@ -141,6 +143,14 @@ public class MainActivity extends AppCompatActivity {
                 intentModifySugang.putExtra("studentNumber", studentNumber);
 
                 startActivity(intentModifySugang);
+            }
+        });
+
+        btn_portal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intentPortal = new Intent(Intent.ACTION_VIEW, Uri.parse("https://portal.sch.ac.kr/p/index.jsp"));
+                startActivity(intentPortal);
             }
         });
     }

@@ -5,14 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="12"
+    android:background="@drawable/list_refactor2"
     tools:context=".AttendanceList">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="#8BC34A"
+        android:layout_height="60dp"
+        android:background="#006784"
         android:orientation="horizontal">
 
         <TextView
@@ -22,7 +21,7 @@
             android:layout_gravity="center"
             android:padding="5dp"
             android:text="major"
-            android:textColor="@color/black" />
+            android:textColor="@color/white" />
 
         <View
             android:layout_width="0dp"
@@ -36,7 +35,7 @@
             android:layout_gravity="center"
             android:padding="5dp"
             android:text="stuNum"
-            android:textColor="@color/black" />
+            android:textColor="@color/white" />
 
         <TextView
             android:id="@+id/tv_attendanceList_userName"
@@ -45,22 +44,21 @@
             android:layout_gravity="center"
             android:padding="5dp"
             android:text="userName"
-            android:textColor="@color/black" />
+            android:textColor="@color/white" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:weightSum="5"
-        android:layout_weight="1">
+        android:layout_height="50dp"
+        android:weightSum="5">
 
         <Button
             android:id="@+id/btn_attendanceList_MON"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:layout_margin="3dp"
+            android:background="#00ff0000"
             android:text="월"
             android:textSize="20dp"/>
 
@@ -68,7 +66,7 @@
             android:id="@+id/btn_attendanceList_TUE"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_margin="3dp"
+            android:background="#00ff0000"
             android:layout_weight="1"
             android:text="화"
             android:textSize="20dp"/>
@@ -77,8 +75,8 @@
             android:id="@+id/btn_attendanceList_WED"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_margin="3dp"
             android:layout_weight="1"
+            android:background="#00ff0000"
             android:text="수"
             android:textSize="20dp"/>
 
@@ -86,7 +84,7 @@
             android:id="@+id/btn_attendanceList_THU"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_margin="3dp"
+            android:background="#00ff0000"
             android:layout_weight="1"
             android:text="목"
             android:textSize="20dp"/>
@@ -95,7 +93,7 @@
             android:id="@+id/btn_attendanceList_FRI"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_margin="3dp"
+            android:background="#00ff0000"
             android:layout_weight="1"
             android:text="금"
             android:textSize="20dp"/>
@@ -105,60 +103,59 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.5"
+        android:layout_height="27dp"
         android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:weightSum="6">
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
 
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_marginLeft="14dp"
             android:text="과목코드"
             android:textColor="@color/black" />
 
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_marginLeft="18dp"
             android:text="과목명"
             android:textColor="@color/black" />
 
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_marginLeft="24dp"
             android:text="요일"
             android:textColor="@color/black" />
 
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_marginLeft="22dp"
             android:text="담당교수"
             android:textColor="@color/black" />
 
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:text="시작시간"
+            android:layout_marginLeft="11dp"
             android:textColor="@color/black" />
 
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:text="끝시간"
+            android:layout_marginLeft="18dp"
             android:textColor="@color/black" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="9.5"
+        android:layout_height="match_parent"
+        android:layout_marginTop="15dp"
         android:orientation="vertical">
 
         <ScrollView
