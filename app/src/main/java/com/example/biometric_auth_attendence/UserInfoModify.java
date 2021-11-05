@@ -16,6 +16,7 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,18 +40,13 @@ import java.sql.Statement;
 
 public class UserInfoModify extends AppCompatActivity {
     private TextView tv_major, tv_stuNum, tv_userName;
-    private Button btn_selectImage, btn_save;
-    private ImageView imageView;
+    private EditText et_major, et_studentNumber, et_semester, et_address, et_status, et_birth;
+    private Button btn_save;
 
-    String userID, userPassword, userMajor, userName;
+    String userID, userPassword, userMajor, userName, userAddress, userStatus, userBirth, userSemester;
+    String modifiedMajor, modifiedName, modifiedAddress, modifiedStatus, modifiedBirth, modifiedSemester, modifiedStuNum;
+    String sendMajor, sendStuNum, sendSemester, sendAddress, sendStatus, sendBirth;
     int studentNumber;
-
-    // connect to gallery variables
-    private static final int IMAGE_PICK_CODE = 1000;
-    private static final int PERMISSION_CODE = 1001;
-
-    // image variables
-    Bitmap bitmap;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -58,15 +54,21 @@ public class UserInfoModify extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_info_modify);
 
+        //find button values;
+        btn_save = findViewById(R.id.btn_userInfoModify_save);
+
         // find textview values
         tv_major = findViewById(R.id.tv_userInfoModify_major);
         tv_userName = findViewById(R.id.tv_userInfoModify_userName);
         tv_stuNum = findViewById(R.id.tv_userInfoModify_stuNum);
 
-        btn_selectImage = findViewById(R.id.btn_userInfoModify_selectImage);
-        btn_save = findViewById(R.id.btn_userInfoModify_save);
-
-        imageView = findViewById(R.id.image);
+        // find edittext values
+        et_major = findViewById(R.id.et_userInfoModify_major);
+        et_studentNumber = findViewById(R.id.et_userInfoModify_studentNumber);
+        et_semester = findViewById(R.id.et_userInfoModify_semester);
+        et_address = findViewById(R.id.et_userInfoModify_address);
+        et_status = findViewById(R.id.et_userInfoModify_status);
+        et_birth = findViewById(R.id.et_userInfoModify_birth);
 
         // get user information from before activity
         Intent intent = getIntent();
@@ -76,126 +78,75 @@ public class UserInfoModify extends AppCompatActivity {
         userMajor = intent.getStringExtra("userMajor");
         studentNumber = intent.getIntExtra("studentNumber", 0);
 
-        // get image string and set imageview
-        //String image = intent.getStringExtra("image");
-        //byte[] convertBytes = java.util.Base64.getDecoder().decode(image);
-        //Bitmap bitmap = BitmapFactory.decodeByteArray(convertBytes, 0, convertBytes.length);
-        //imageView.setImageBitmap(bitmap);
+        userAddress = intent.getStringExtra("userAddress");
+        userStatus = intent.getStringExtra("userStatus");
+        userBirth = intent.getStringExtra("userBirth");
+        userSemester = intent.getStringExtra("userSemester");
 
         // set textview on the tab
         tv_major.setText(userMajor);
         tv_stuNum.setText("" + studentNumber);
         tv_userName.setText(userName);
 
-        btn_selectImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // check runtime permission
-                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-                    if(checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED){
-                        // permission not granted, request it.
-                        String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE};
+        // set edittext hint
+        et_major.setHint(userMajor);
+        et_studentNumber.setHint("" + studentNumber);
+        et_semester.setHint(userSemester);
+        et_address.setHint(userAddress);
+        et_status.setHint(userStatus);
+        et_birth.setHint(userBirth);
 
-                        // show popup for runtime permission
-                        requestPermissions(permissions, PERMISSION_CODE);
-                    } else {
-                        // permission already granted
-                        pickImageFromGallery();
-                    }
-                } else {
-                    // system os is less than marshmallow
-                    pickImageFromGallery();
-                }
-            }
-        });
-
+        // save button click listener
         btn_save.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View view) {
-                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
-                byte[] imageBytes = byteArrayOutputStream.toByteArray();
-                //String imageString = new String(imageBytes, Base64.DEFAULT);
-                String imageString = java.util.Base64.getEncoder().encodeToString(imageBytes);
-                int length = imageString.length();
+                // get text from EditText
+                modifiedMajor = et_major.getText().toString();
+                modifiedStuNum = et_studentNumber.getText().toString();
+                modifiedSemester = et_semester.getText().toString();
+                modifiedAddress = et_address.getText().toString();
+                modifiedStatus = et_status.getText().toString();
+                modifiedBirth = et_birth.getText().toString();
 
-                Response.Listener<String> responseListener = new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try{
-                            JSONObject jsonObject = new JSONObject(response);
+                // if modified EditText length is more than 0
+                // 전부다 받고 전부 업데이트 해버리는 방식으로
+                if (modifiedMajor.length() > 0) {
+                    sendMajor = modifiedMajor;
+                } else {
+                    sendMajor = userMajor;
+                }
 
-                            boolean success = jsonObject.getBoolean("success");
+                if (modifiedStuNum.length() > 0) {
+                    sendStuNum = modifiedStuNum;
+                } else {
+                    sendStuNum = String.valueOf(studentNumber);
+                }
 
-                            if(success) {
-                                Toast.makeText(getApplicationContext(), "success to register", Toast.LENGTH_SHORT).show();
-                                finish();
-                            }
-                            else {
-                                Toast.makeText(getApplicationContext(), "failed to register", Toast.LENGTH_SHORT).show();
-                                return;
-                            }
-                        } catch (JSONException e){
-                            e.printStackTrace();
-                        }
-                    }
-                };
+                if(modifiedSemester.length() > 0) {
+                    sendSemester = modifiedSemester;
+                } else {
+                    sendSemester = userSemester;
+                }
 
-                // request server
-                SendImageRequest sendImageRequest = new SendImageRequest(userID, imageString, responseListener);
-                RequestQueue queue = Volley.newRequestQueue(UserInfoModify.this);
-                queue.add(sendImageRequest);
+                if(modifiedAddress.length() > 0) {
+                    sendAddress = modifiedAddress;
+                } else {
+                    sendAddress = userAddress;
+                }
+
+                if(modifiedStatus.length() > 0) {
+                    sendStatus = userStatus;
+                }
+
+                if(modifiedBirth.length() > 0) {
+                    sendBirth = modifiedBirth;
+                } else {
+                    sendBirth = userBirth;
+                }
+
+                // send server request
+
             }
         });
-    }
-
-    private void pickImageFromGallery(){
-        // intent to pick image
-        Intent pickImageIntent = new Intent(Intent.ACTION_PICK);
-        pickImageIntent.setType("image/*");
-        startActivityForResult(pickImageIntent, IMAGE_PICK_CODE);;
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        switch (requestCode) {
-            case PERMISSION_CODE: {
-                if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    // permission was granted
-                    pickImageFromGallery();
-                } else {
-                    // permission was denied
-                    Toast.makeText(getApplicationContext(), "사용권한이 거부되었습니다.", Toast.LENGTH_SHORT).show();
-                }
-            }
-        }
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode == RESULT_OK && requestCode == IMAGE_PICK_CODE){
-            try {
-                InputStream inputStream = getContentResolver().openInputStream(data.getData());
-                bitmap = BitmapFactory.decodeStream(inputStream);
-                imageView.setImageBitmap(bitmap);
-
-//                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-//                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
-//                byte[] imageBytes = byteArrayOutputStream.toByteArray();
-//                //String imageString = new String(imageBytes, Base64.DEFAULT);
-//                String imageString = java.util.Base64.getEncoder().encodeToString(imageBytes);
-//
-//                byte[] convertBytes = java.util.Base64.getDecoder().decode(imageString);
-//                Bitmap testBitmap = BitmapFactory.decodeByteArray(convertBytes, 0, convertBytes.length);
-//                imageView.setImageBitmap(testBitmap);
-
-            } catch (FileNotFoundException e){
-                e.printStackTrace();
-            }
-        }
     }
 }

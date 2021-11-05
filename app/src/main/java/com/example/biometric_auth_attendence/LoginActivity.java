@@ -67,6 +67,12 @@ public class LoginActivity extends AppCompatActivity {
                                 String userName = jsonObject.getString("userName");
                                 int studentNumber = jsonObject.getInt("studentNumber");
 
+                                // addition
+                                String userAddress = jsonObject.getString("userAddress");
+                                String userStatus = jsonObject.getString("userStatus");
+                                String userBirth = jsonObject.getString("userBirth");
+                                String userSemester = jsonObject.getString("userSemester");
+
                                 Toast.makeText(getApplicationContext(), "success to login", Toast.LENGTH_SHORT).show();
 
                                 // make a new intent and parse user info data
@@ -77,8 +83,11 @@ public class LoginActivity extends AppCompatActivity {
                                 intent.putExtra("userName", userName);
                                 intent.putExtra("studentNumber", studentNumber);
 
-                                // send main image
-                                intent.putExtra("imageString", imageString);
+                                // addition
+                                intent.putExtra("userAddress", userAddress);
+                                intent.putExtra("userStatus", userStatus);
+                                intent.putExtra("userBirth", userBirth);
+                                intent.putExtra("userSemester", userSemester);
 
                                 startActivity(intent);
                                 finish();

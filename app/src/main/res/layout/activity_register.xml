@@ -4,12 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/register_refactor"
+    android:background="@drawable/register_refactor2"
     tools:context=".RegisterActivity">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_marginTop="270dp"
+        android:layout_marginTop="200dp"
         android:layout_height="300dp"
         android:fillViewport="true">
 
@@ -101,12 +101,33 @@
                 android:layout_marginBottom="15sp"
                 android:hint="ADDRESS" />
 
+            <EditText
+                android:id="@+id/et_register_birth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableRight="@drawable/ic_baseline_aspect_ratio_24"
+                android:layout_marginLeft="30sp"
+                android:layout_marginRight="30sp"
+                android:layout_marginBottom="15sp"
+                android:inputType="date"
+                android:hint="BIRTH : 19970725"/>
+
+            <EditText
+                android:id="@+id/et_register_semester"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableRight="@drawable/ic_baseline_aspect_ratio_24"
+                android:layout_marginLeft="30sp"
+                android:layout_marginRight="30sp"
+                android:layout_marginBottom="15sp"
+                android:hint="semester"/>
+
         </LinearLayout>
 
     </ScrollView>
 
     <Button
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="47dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

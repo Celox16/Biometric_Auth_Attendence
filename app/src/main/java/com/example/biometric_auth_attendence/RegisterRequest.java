@@ -9,10 +9,11 @@ import java.util.Map;
 
 public class RegisterRequest extends StringRequest {
     // set server URL (connect to php file)
-    final static private String URL = Variables.address + "registerTest.php";
+    final static private String URL = Variables.address + "register.php";
     private Map<String, String> map;
 
-    public RegisterRequest(String userID, String userPassword, String userName, int studentNumber, String userMajor, Response.Listener<String> listener){
+    public RegisterRequest(String userID, String userPassword, String userName, int studentNumber, String userMajor,
+                           String userAddress, String userStatus, String userBirth, String userSemester, Response.Listener<String> listener){
         super(Method.POST, URL, listener, null);
 
         map = new HashMap<>();
@@ -21,6 +22,12 @@ public class RegisterRequest extends StringRequest {
         map.put("userName", userName);
         map.put("studentNumber", studentNumber + "");
         map.put("userMajor", userMajor);
+
+        // addition
+        map.put("userAddress", userAddress);
+        map.put("userStatus", userStatus);
+        map.put("userBirth", userBirth);
+        map.put("userSemester", userSemester);
     }
 
 

@@ -33,8 +33,7 @@ import java.net.URL;
 public class MainActivity extends AppCompatActivity {
     // view variables
     private TextView tv_major, tv_stuNum, tv_userName;
-    private Button btn_attendance, btn_check, btn_userInfoModify, btn_sugangInfoModify, btn_portal;
-    private ImageView imageView;
+    private Button btn_attendance, btn_check, btn_userInfoModify, btn_sugangInfoModify, btn_portal, btn_viewUserInfo;
 
     // on back pressed variables
     private long backKeyPressedTime = 0;
@@ -71,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
         btn_userInfoModify = findViewById(R.id.btn_main_userInfoModify);
         btn_sugangInfoModify = findViewById(R.id.btn_main_sugangInfoModify);
         btn_portal = findViewById(R.id.btn_main_goPortal);
+        btn_viewUserInfo = findViewById(R.id.btn_main_viewUserInfo);
 
         // get user info
         Intent intent = getIntent();
@@ -79,8 +79,12 @@ public class MainActivity extends AppCompatActivity {
         String userMajor = intent.getStringExtra("userMajor");
         String userName = intent.getStringExtra("userName");
         int studentNumber = intent.getIntExtra("studentNumber", 0);
-        // get user image
-        String imageString = intent.getStringExtra("imageString");
+
+        // get user info addition
+        String userAddress = intent.getStringExtra("userAddress");
+        String userStatus = intent.getStringExtra("userStatus");
+        String userBirth = intent.getStringExtra("userBirth");
+        String userSemester = intent.getStringExtra("userSemester");
 
         // set textview on the tab
         tv_userName.setText(userName);
@@ -128,6 +132,11 @@ public class MainActivity extends AppCompatActivity {
                 intentUserInfoModify.putExtra("userMajor", userMajor);
                 intentUserInfoModify.putExtra("studentNumber", studentNumber);
 
+                intentUserInfoModify.putExtra("userAddress", userAddress);
+                intentUserInfoModify.putExtra("userStatus", userStatus);
+                intentUserInfoModify.putExtra("userBirth", userBirth);
+                intentUserInfoModify.putExtra("userSemester", userSemester);
+
                 startActivity(intentUserInfoModify);
             }
         });
@@ -136,13 +145,31 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // make a new intent and parse user info data
-                Intent intentModifySugang = new Intent(MainActivity.this, ModifySugang.class);
+                Intent intentModifySugang = new Intent(getApplicationContext(), ModifySugang.class);
                 intentModifySugang.putExtra("userID", userID);
                 intentModifySugang.putExtra("userName", userName);
                 intentModifySugang.putExtra("userMajor", userMajor);
                 intentModifySugang.putExtra("studentNumber", studentNumber);
 
                 startActivity(intentModifySugang);
+            }
+        });
+
+        btn_viewUserInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intentViewUserInfo = new Intent(getApplicationContext(), ViewUserInfo.class);
+                intentViewUserInfo.putExtra("userID", userID);
+                intentViewUserInfo.putExtra("userName", userName);
+                intentViewUserInfo.putExtra("userMajor", userMajor);
+                intentViewUserInfo.putExtra("studentNumber", studentNumber);
+
+                intentViewUserInfo.putExtra("userAddress", userAddress);
+                intentViewUserInfo.putExtra("userStatus", userStatus);
+                intentViewUserInfo.putExtra("userBirth", userBirth);
+                intentViewUserInfo.putExtra("userSemester", userSemester);
+
+                startActivity(intentViewUserInfo);
             }
         });
 

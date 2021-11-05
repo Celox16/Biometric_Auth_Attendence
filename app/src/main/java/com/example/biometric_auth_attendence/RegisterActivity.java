@@ -18,7 +18,7 @@ import org.json.JSONObject;
 
 public class RegisterActivity extends AppCompatActivity {
     private EditText et_id, et_password, et_name, et_studentNumber, et_major,
-            et_passwordCheck, et_status, et_address;
+            et_passwordCheck, et_status, et_address, et_birth, et_semester;
     private Button btn_register;
 
     @Override
@@ -35,6 +35,8 @@ public class RegisterActivity extends AppCompatActivity {
         et_passwordCheck = findViewById(R.id.et_register_password2);
         et_address = findViewById(R.id.et_register_address);
         et_status = findViewById(R.id.et_register_status);
+        et_birth = findViewById(R.id.et_register_birth);
+        et_semester = findViewById(R.id.et_register_semester);
 
         btn_register = findViewById(R.id.btn_register_register);
 
@@ -48,8 +50,21 @@ public class RegisterActivity extends AppCompatActivity {
                 String userMajor = et_major.getText().toString();
                 int studentNumber = Integer.parseInt(et_studentNumber.getText().toString());
                 String userPasswordCheck = et_passwordCheck.getText().toString();
+
                 String userAddress = et_address.getText().toString();
                 String userStatus = et_status.getText().toString();
+                String userBirth = et_birth.getText().toString();
+                String userSemester = et_semester.getText().toString();
+
+                if(!userPassword.equals(userPasswordCheck)){
+                    Toast.makeText(getApplicationContext(), "비밀번호가 맞지 않습니다.", Toast.LENGTH_SHORT).show();
+                    return;
+                } else if(userID.length()==0 || userPassword.length()==0 || userName.length()==0 ||
+                        et_studentNumber.getText().length()==0 || userAddress.length()==0 ||
+                        userStatus.length()==0 || userBirth.length()==0 || userSemester.length()==0){
+                    Toast.makeText(getApplicationContext(), "빈칸을 모두 채워주세요", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
 
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
@@ -74,7 +89,8 @@ public class RegisterActivity extends AppCompatActivity {
                     }
                 };
                 // request server (register table)
-                RegisterRequest registerRequest = new RegisterRequest(userID, userPassword, userName, studentNumber, userMajor, responseListener);
+                RegisterRequest registerRequest = new RegisterRequest(userID, userPassword, userName, studentNumber, userMajor,
+                        userAddress, userStatus, userBirth, userSemester, responseListener);
                 RequestQueue queue = Volley.newRequestQueue(RegisterActivity.this);
                 queue.add(registerRequest);
 
@@ -82,11 +98,6 @@ public class RegisterActivity extends AppCompatActivity {
                 RegisterCreateTable registerCreateTable = new RegisterCreateTable(userID, responseListener);
                 RequestQueue queue1 = Volley.newRequestQueue(RegisterActivity.this);
                 queue1.add(registerCreateTable);
-
-                // request server (create image table)
-                RegisterImageTable registerImageTable = new RegisterImageTable(userID, responseListener);
-                RequestQueue queue2 = Volley.newRequestQueue(RegisterActivity.this);
-                queue2.add(registerImageTable);
             }
         });
     }
