@@ -13,7 +13,7 @@
         <entry key="app/src/main/res/layout/activity_add_subject.xml" value="0.19202898550724637" />
         <entry key="app/src/main/res/layout/activity_attendance_check.xml" value="0.18704710144927536" />
         <entry key="app/src/main/res/layout/activity_attendance_list.xml" value="0.19202898550724637" />
-        <entry key="app/src/main/res/layout/activity_attendance_result.xml" value="0.18206521739130435" />
+        <entry key="app/src/main/res/layout/activity_attendance_result.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_attendance_search.xml" value="0.18206521739130435" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.21784420289855072" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
@@ -21,7 +21,7 @@
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_user_info_modify.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_view_user_info.xml" value="0.19701086956521738" />
-        <entry key="app/src/main/res/layout/attendance_list_item.xml" value="0.18206521739130435" />
+        <entry key="app/src/main/res/layout/attendance_list_item.xml" value="0.335" />
         <entry key="app/src/main/res/layout/subject_list_item.xml" value="0.55" />
       </map>
     </option>

@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class ModifyUserInfoRequest extends StringRequest {
     // set server URL (connect to php file)
-    final static private String URL = Variables.address + "modifyUserInfo.php";
+    final static private String URL = Variables.address + "modifyTest.php";
     private Map<String, String> map;
 
     public ModifyUserInfoRequest (String userID, String major, String stuNum,

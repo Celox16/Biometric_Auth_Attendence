@@ -135,6 +135,8 @@ public class UserInfoModify extends AppCompatActivity {
                 }
 
                 if(modifiedStatus.length() > 0) {
+                    sendStatus = modifiedStatus;
+                } else {
                     sendStatus = userStatus;
                 }
 
@@ -144,8 +146,32 @@ public class UserInfoModify extends AppCompatActivity {
                     sendBirth = userBirth;
                 }
 
-                // send server request
+                Response.Listener<String> responseListener = new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try{
+                            JSONObject jsonObject = new JSONObject(response);
 
+                            boolean success = jsonObject.getBoolean("success");
+
+                            if(success){
+                                Toast.makeText(getApplicationContext(), "수정 완료", Toast.LENGTH_SHORT).show();
+                                finish();
+                            } else {
+                                Toast.makeText(getApplicationContext(), "수정 실패", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                };
+
+                // send server request
+                ModifyUserInfoRequest modifyUserInfoRequest = new ModifyUserInfoRequest(userID, sendMajor, sendStuNum,
+                        sendSemester, sendAddress, sendStatus, sendBirth, responseListener);
+                RequestQueue queue = Volley.newRequestQueue(UserInfoModify.this);
+                queue.add(modifyUserInfoRequest);
             }
         });
     }
