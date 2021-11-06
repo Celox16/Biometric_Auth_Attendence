@@ -2,56 +2,54 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
-    android:weightSum="6">
+    android:orientation="horizontal">
 
     <TextView
-        android:paddingBottom="10dp"
-        android:paddingTop="10dp"
+        android:paddingBottom="12dp"
+        android:paddingTop="12dp"
+        android:layout_marginLeft="8dp"
         android:id="@+id/tv_customListview_subjectCode"
-        android:layout_width="0dp"
+        android:layout_width="56dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:text="subjectCode"
         android:textColor="@color/black" />
 
     <TextView
         android:id="@+id/tv_customListview_subjectName"
-        android:layout_width="0dp"
+        android:layout_width="140dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:text="subjectName"
         android:textColor="@color/black" />
 
     <TextView
         android:id="@+id/tv_customListview_dayOfTheWeek"
-        android:layout_width="0dp"
+        android:layout_marginLeft="4dp"
+        android:layout_width="35dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:text="dayOfTheWeek"
         android:textColor="@color/black" />
 
     <TextView
         android:id="@+id/tv_customListview_professor"
-        android:layout_width="0dp"
+        android:layout_marginLeft="12dp"
+        android:layout_width="45dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:text="professor"
         android:textColor="@color/black" />
 
     <TextView
         android:id="@+id/tv_customListview_startTime"
-        android:layout_width="0dp"
+        android:layout_width="50dp"
+        android:layout_marginLeft="15dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:text="startTime"
         android:textColor="@color/black" />
 
     <TextView
         android:id="@+id/tv_customListview_endTime"
-        android:layout_width="0dp"
+        android:layout_marginLeft="2dp"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:text="endTime"
         android:textColor="@color/black" />
 
