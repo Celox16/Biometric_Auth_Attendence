@@ -50,7 +50,7 @@ public class AttendanceCheck extends AppCompatActivity {
     private static final int REQUEST_DISCOVER_BT = 1;
     private BluetoothAdapter bluetoothAdapter;
     // TODO : change to boolean value (false is default value)
-    private boolean bluetoothJudgement = true;
+    private boolean bluetoothJudgement = false;
 
     @RequiresApi(api = Build.VERSION_CODES.P)
 
@@ -144,6 +144,7 @@ public class AttendanceCheck extends AppCompatActivity {
                             boolean connected = (boolean) method.invoke(device, (Object[]) null);
                             if(connected && device.getAddress().equals(bluetoothName)){
                                     bluetoothJudgement = true;
+                                    Toast.makeText(getApplicationContext(), "강의실 블루투스 연결 성공", Toast.LENGTH_SHORT).show();
                             }
                         }catch (Exception e){
                             e.printStackTrace();
@@ -153,7 +154,7 @@ public class AttendanceCheck extends AppCompatActivity {
 
                         btn_attendanceCheck.setVisibility(View.VISIBLE);
                     }
-                    else{
+                    if(!bluetoothJudgement){
                         Toast.makeText(getApplicationContext(), "강의실에 올바른 블루투스 기기에 연결해주세요.", Toast.LENGTH_SHORT).show();
                     }
                 }
