@@ -221,7 +221,7 @@ public class AttendanceCheck extends AppCompatActivity {
                 else if(fCurrentTime < fStartTime){
                     Toast.makeText(getApplicationContext(), "수업시작 전입니다.", Toast.LENGTH_SHORT).show();
                 }
-                else if(fCurrentTime >= fStartTime && fCurrentTime <= (fStartTime + 5)){
+                else if(fCurrentTime >= fStartTime && fCurrentTime <= (fStartTime + 10)){
                     String status = "출석";
                     AttendanceCheckRequest attendanceCheckRequest =
                             new AttendanceCheckRequest(subjectName, userID, Integer.toString(studentNumber), userName,
@@ -231,7 +231,7 @@ public class AttendanceCheck extends AppCompatActivity {
 
                     Toast.makeText(getApplicationContext(), "출석입니다.", Toast.LENGTH_SHORT).show();
                 }
-                else if(fCurrentTime > (fStartTime + 5) && fCurrentTime <= (fStartTime + 30)){
+                else if(fCurrentTime > (fStartTime + 10) && fCurrentTime <= (fStartTime + 30)){
                     String status = "지각";
                     AttendanceCheckRequest attendanceCheckRequest =
                             new AttendanceCheckRequest(subjectName, userID, Integer.toString(studentNumber), userName,
@@ -242,6 +242,11 @@ public class AttendanceCheck extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "지각입니다.", Toast.LENGTH_SHORT).show();
                 }
                 else if(fCurrentTime > (fStartTime + 30) && fCurrentTime <= fEndTime){
+                    String status = "결석";
+                    AttendanceCheckRequest attendanceCheckRequest =
+                            new AttendanceCheckRequest(subjectName, userID, Integer.toString(studentNumber), userName,
+                                    sendCurrentTime, status, responseListener);
+
                     Toast.makeText(getApplicationContext(), "수업에 너무 늦으셨습니다.", Toast.LENGTH_SHORT).show();
                 }
                 else {
